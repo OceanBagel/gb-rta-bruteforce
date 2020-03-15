@@ -22,7 +22,7 @@ public class CrystalTIDManip {
     // processed
     private static final int MAX_COST = 3600;
 
-    private static final int BASE_COST = 387 + 60;
+    private static final int BASE_COST = 859;
 
     private static final int NUM_THREADS = 8;
 
@@ -34,22 +34,22 @@ public class CrystalTIDManip {
     // private static Strat intro0 = new Strat("_intro0", 450, new Integer[]
     // {CrystalAddr.introScene1Addr, CrystalAddr.readJoypadAddr}, new Integer[]
     // {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat intro1 = new Strat("_intro1", 624,
+    private static Strat intro1 = new Strat("_intro1", 294,
             new Integer[] { CrystalAddr.introScene3Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static Strat intro2 = new Strat("_intro2", 819,
+    private static Strat intro2 = new Strat("_intro2", 407,
             new Integer[] { CrystalAddr.introScene4Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static Strat intro3 = new Strat("_intro3", 1052,
+    private static Strat intro3 = new Strat("_intro3", 546,
             new Integer[] { CrystalAddr.introScene5Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static Strat intro4 = new Strat("_intro4", 1396,
+    private static Strat intro4 = new Strat("_intro4", 883,
             new Integer[] { CrystalAddr.introScene9Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static Strat intro5 = new Strat("_intro5", 1674,
+    private static Strat intro5 = new Strat("_intro5", 1042,
             new Integer[] { CrystalAddr.introScene11Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static Strat intro6 = new Strat("_intro6", 1871,
+    private static Strat intro6 = new Strat("_intro6", 1215,
             new Integer[] { CrystalAddr.introScene13Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
     // private static Strat intro16 = new Strat("_intro7", 2085, new Integer[]
@@ -61,16 +61,16 @@ public class CrystalTIDManip {
     // private static Strat intro25 = new Strat("_intro9", 2565, new Integer[]
     // {CrystalAddr.introScene26Addr, CrystalAddr.readJoypadAddr}, new Integer[]
     // {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat introwait = new Strat("_introwait", 2827, new Integer[] { CrystalAddr.titleScreenAddr },
+    private static Strat introwait = new Strat("_introwait", 5196, new Integer[] { CrystalAddr.titleScreenAddr },
             new Integer[] { NO_INPUT }, new Integer[] { 0 });
 
     // private static Strat titleSkip = new Strat("_title", 54, new Integer[]
     // {CrystalAddr.readJoypadAddr}, new Integer[] {START}, new Integer[] {1});
-    private static Strat titleSkip = new Strat("", 54, new Integer[] { CrystalAddr.readJoypadAddr },
+    private static Strat titleSkip = new Strat("", 52, new Integer[] { CrystalAddr.readJoypadAddr },
             new Integer[] { START }, new Integer[] { 1 });
     private static Strat newGame = new Strat("_newgame", 8, new Integer[] { CrystalAddr.readJoypadAddr },
             new Integer[] { A }, new Integer[] { 52 });
-    private static Strat backout = new Strat("_backout", 44, new Integer[] { CrystalAddr.readJoypadAddr },
+    private static Strat backout = new Strat("_backout", 57, new Integer[] { CrystalAddr.readJoypadAddr },
             new Integer[] { B }, new Integer[] { 1 });
 
     private static List<Strat> intro = Arrays.asList(gfSkip, intro1, intro2, intro3, intro4, intro5, intro6, introwait);
@@ -144,12 +144,12 @@ public class CrystalTIDManip {
         // calc results count
         int numResults = 0;
         for (int introN = 0; introN < numIntros; introN++) {
-            int maxBackouts = (MAX_COST - baseCosts[introN]) / 98;
+            int maxBackouts = (MAX_COST - baseCosts[introN]) / 109;
             for (int bo = 0; bo <= maxBackouts; bo++) {
-                int maxWait = (MAX_COST - baseCosts[introN] - bo * 98) / 4;
+                int maxWait = (MAX_COST - baseCosts[introN] - bo * 109) / 4;
                 for (int w = 0; w <= maxWait; w++) {
                     // do backout2 and advance now because of memory
-                    int maxBo2s = (MAX_COST - baseCosts[introN] - bo * 98 - w * 4) / 98;
+                    int maxBo2s = (MAX_COST - baseCosts[introN] - bo * 109 - w * 4) / 109;
                     if (w == 0) {
                         maxBo2s = 0; // stop double dipping
                     }
@@ -164,7 +164,7 @@ public class CrystalTIDManip {
         byte[][][] backout1States = new byte[numIntros][][];
         int totalB1States = 0;
         for (int introN = 0; introN < numIntros; introN++) {
-            int maxBackouts = (MAX_COST - baseCosts[introN]) / 98;
+            int maxBackouts = (MAX_COST - baseCosts[introN]) / 109;
             backout1States[introN] = new byte[maxBackouts + 1][];
             backout1States[introN][0] = introStates[introN];
             gb.loadState(introStates[introN]);
@@ -195,7 +195,7 @@ public class CrystalTIDManip {
             int mbs = backout1States[introN].length;
             String introSeq = "crystal" + intro.get(introN).name;
             for (int bo = 0; bo < mbs; bo++) {
-                int maxWait = (MAX_COST - baseCosts[introN] - bo * 98) / 4;
+                int maxWait = (MAX_COST - baseCosts[introN] - bo * 109) / 4;
                 // gb.loadState(backout1States[introN][bo]);
 
                 String boSeq = bo > 0 ? introSeq + "_backout" + bo : introSeq;
@@ -224,7 +224,7 @@ public class CrystalTIDManip {
                                 for (int w = 0; w <= maxWait; w++) {
                                     // do backout2 and advance now because of
                                     // memory
-                                    int maxBo2s = (MAX_COST - baseCosts[iN] - bO * 98 - w * 4) / 98;
+                                    int maxBo2s = (MAX_COST - baseCosts[iN] - bO * 109 - w * 4) / 109;
                                     if (w == 0) {
                                         maxBo2s = 0; // stop double dipping
                                     }
@@ -237,7 +237,7 @@ public class CrystalTIDManip {
                                         newGame.execute(gbi);
                                         int tid = readTID(gbi);
                                         int lid = readLID(gbi);
-                                        int cost = baseCosts[iN] + bO * 98 + w * 4 + bo2 * 98;
+                                        int cost = baseCosts[iN] + bO * 109 + w * 4 + bo2 * 109;
                                         String seq = bo2 > 0 ? waitSeq + "_backout" + bo2 : waitSeq;
                                         results.add(new Result(seq, cost, tid, lid));
 
