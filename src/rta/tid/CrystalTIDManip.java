@@ -1,16 +1,18 @@
 package rta.tid;
 
-import rta.CrystalAddr;
-
-import rta.gambatte.Gb;
-import rta.gambatte.LoadFlags;
-
-import java.io.*;
-import java.util.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import rta.CrystalAddr;
+import rta.gambatte.Gb;
+import rta.gambatte.LoadFlags;
 
 public class CrystalTIDManip {
     private static final int NO_INPUT = 0x00;
@@ -18,29 +20,60 @@ public class CrystalTIDManip {
     private static final int B = 0x02;
     private static final int START = 0x08;
 
-    // Change this to increase/decrease number of intro sequence combinations processed
+    // Change this to increase/decrease number of intro sequence combinations
+    // processed
     private static final int MAX_COST = 3600;
 
     private static final int BASE_COST = 387 + 60;
 
-    private static Strat gfSkip = new Strat("_gfskip", 0, new Integer[] {CrystalAddr.readJoypadAddr}, new Integer[] {START}, new Integer[] {1});
-//  private static Strat gfWait = new Strat("_gfwait", 384, new Integer[] {CrystalAddr.introScene0Addr, CrystalAddr.readJoypadAddr}, new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-//  private static Strat intro0 = new Strat("_intro0", 450, new Integer[] {CrystalAddr.introScene1Addr, CrystalAddr.readJoypadAddr}, new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat intro1 = new Strat("_intro1", 624, new Integer[] {CrystalAddr.introScene3Addr, CrystalAddr.readJoypadAddr}, new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat intro2 = new Strat("_intro2", 819, new Integer[] {CrystalAddr.introScene4Addr, CrystalAddr.readJoypadAddr}, new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat intro3 = new Strat("_intro3", 1052, new Integer[] {CrystalAddr.introScene5Addr, CrystalAddr.readJoypadAddr}, new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat intro4 = new Strat("_intro4", 1396, new Integer[] {CrystalAddr.introScene9Addr, CrystalAddr.readJoypadAddr}, new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat intro5 = new Strat("_intro5", 1674, new Integer[] {CrystalAddr.introScene11Addr, CrystalAddr.readJoypadAddr}, new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat intro6 = new Strat("_intro6", 1871, new Integer[] {CrystalAddr.introScene13Addr, CrystalAddr.readJoypadAddr}, new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-//  private static Strat intro16 = new Strat("_intro7", 2085, new Integer[] {CrystalAddr.introScene17Addr, CrystalAddr.readJoypadAddr}, new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-//  private static Strat intro18 = new Strat("_intro8", 2254, new Integer[] {CrystalAddr.introScene19Addr, CrystalAddr.readJoypadAddr}, new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-//  private static Strat intro25 = new Strat("_intro9", 2565, new Integer[] {CrystalAddr.introScene26Addr, CrystalAddr.readJoypadAddr}, new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat introwait = new Strat("_introwait", 2827, new Integer[] {CrystalAddr.titleScreenAddr}, new Integer[] {NO_INPUT}, new Integer[] {0});
+    private static final int NUM_THREADS = 8;
 
-    // private static Strat titleSkip = new Strat("_title", 54, new Integer[] {CrystalAddr.readJoypadAddr}, new Integer[] {START}, new Integer[] {1});
-    private static Strat titleSkip = new Strat("", 54, new Integer[] {CrystalAddr.readJoypadAddr}, new Integer[] {START}, new Integer[] {1});
-    private static Strat newGame = new Strat("_newgame", 8, new Integer[] {CrystalAddr.readJoypadAddr}, new Integer[] {A}, new Integer[] {52});
-    private static Strat backout = new Strat("_backout", 44, new Integer[] {CrystalAddr.readJoypadAddr}, new Integer[] {B}, new Integer[] {1});
+    private static IntroStrat gfSkip = new IntroStrat("_gfskip", 0, new Integer[] { CrystalAddr.readJoypadAddr },
+            new Integer[] { START }, new Integer[] { 1 });
+    // private static Strat gfWait = new Strat("_gfwait", 384, new Integer[]
+    // {CrystalAddr.introScene0Addr, CrystalAddr.readJoypadAddr}, new Integer[]
+    // {NO_INPUT, START}, new Integer[] {0, 1});
+    // private static Strat intro0 = new Strat("_intro0", 450, new Integer[]
+    // {CrystalAddr.introScene1Addr, CrystalAddr.readJoypadAddr}, new Integer[]
+    // {NO_INPUT, START}, new Integer[] {0, 1});
+    private static IntroStrat intro1 = new IntroStrat("_intro1", 624,
+            new Integer[] { CrystalAddr.introScene3Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
+    private static IntroStrat intro2 = new IntroStrat("_intro2", 819,
+            new Integer[] { CrystalAddr.introScene4Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
+    private static IntroStrat intro3 = new IntroStrat("_intro3", 1052,
+            new Integer[] { CrystalAddr.introScene5Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
+    private static IntroStrat intro4 = new IntroStrat("_intro4", 1396,
+            new Integer[] { CrystalAddr.introScene9Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
+    private static IntroStrat intro5 = new IntroStrat("_intro5", 1674,
+            new Integer[] { CrystalAddr.introScene11Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
+    private static IntroStrat intro6 = new IntroStrat("_intro6", 1871,
+            new Integer[] { CrystalAddr.introScene13Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
+    // private static Strat intro16 = new Strat("_intro7", 2085, new Integer[]
+    // {CrystalAddr.introScene17Addr, CrystalAddr.readJoypadAddr}, new Integer[]
+    // {NO_INPUT, START}, new Integer[] {0, 1});
+    // private static Strat intro18 = new Strat("_intro8", 2254, new Integer[]
+    // {CrystalAddr.introScene19Addr, CrystalAddr.readJoypadAddr}, new Integer[]
+    // {NO_INPUT, START}, new Integer[] {0, 1});
+    // private static Strat intro25 = new Strat("_intro9", 2565, new Integer[]
+    // {CrystalAddr.introScene26Addr, CrystalAddr.readJoypadAddr}, new Integer[]
+    // {NO_INPUT, START}, new Integer[] {0, 1});
+    private static Strat introwait = new Strat("_introwait", 2827, new Integer[] { CrystalAddr.titleScreenAddr },
+            new Integer[] { NO_INPUT }, new Integer[] { 0 });
+
+    // private static Strat titleSkip = new Strat("_title", 54, new Integer[]
+    // {CrystalAddr.readJoypadAddr}, new Integer[] {START}, new Integer[] {1});
+    private static Strat titleSkip = new Strat("", 54, new Integer[] { CrystalAddr.readJoypadAddr },
+            new Integer[] { START }, new Integer[] { 1 });
+    private static Strat newGame = new Strat("_newgame", 8, new Integer[] { CrystalAddr.readJoypadAddr },
+            new Integer[] { A }, new Integer[] { 52 });
+    private static Strat backout = new Strat("_backout", 44, new Integer[] { CrystalAddr.readJoypadAddr },
+            new Integer[] { B }, new Integer[] { 1 });
 
     private static List<Strat> intro = Arrays.asList(gfSkip, intro1, intro2, intro3, intro4, intro5, intro6, introwait);
 
@@ -50,6 +83,7 @@ public class CrystalTIDManip {
         Integer[] addr;
         Integer[] input;
         Integer[] advanceFrames;
+
         Strat(String name, int cost, Integer[] addr, Integer[] input, Integer[] advanceFrames) {
             this.addr = addr;
             this.cost = cost;
@@ -57,30 +91,63 @@ public class CrystalTIDManip {
             this.input = input;
             this.advanceFrames = advanceFrames;
         }
+
         public void execute(Gb gb) {
-            for(int i=0; i<addr.length; i++) {
-            	gb.advanceWithJoypadToAddress(input[i], addr[i]);
-                for(int j=0; j<advanceFrames[i]; j++) {
+            for (int i = 0; i < addr.length; i++) {
+                gb.advanceWithJoypadToAddress(input[i], addr[i]);
+                for (int j = 0; j < advanceFrames[i]; j++) {
                     gb.advanceFrame(input[i]);
                 }
             }
         }
     }
 
+    static class IntroStrat extends Strat {
+        byte[] state;
+
+        IntroStrat(String name, int cost, Integer[] addr, Integer[] input, Integer[] advanceFrames) {
+            super(name, cost, addr, input, advanceFrames);
+            state = null;
+        }
+
+        public void execute(Gb gb) {
+            if (state == null) {
+                super.execute(gb);
+                state = gb.saveState();
+            } else {
+                gb.loadState(state);
+            }
+        }
+    }
+
+    static class WaitStrat extends Strat {
+        WaitStrat(String name, int cost, Integer[] addr, Integer[] input, Integer[] advanceFrames) {
+            super(name, cost, addr, input, advanceFrames);
+        }
+    }
+
     static class IntroSequence extends ArrayList<Strat> implements Comparable<IntroSequence> {
+        static Map<String, byte[]> saveStates;
+        static {
+            saveStates = new HashMap<String, byte[]>();
+        }
+
         IntroSequence(Strat... strats) {
             super(Arrays.asList(strats));
         }
+
         IntroSequence(IntroSequence other) {
             super(other);
         }
-        @Override public String toString() {
+
+        @Override
+        public String toString() {
             String ret = "crystal";
-            for(int i=0; i<this.size(); i++) {
+            for (int i = 0; i < this.size(); i++) {
                 Strat s = this.get(i);
-                if(s.name.equals(("_backout"))) {
+                if (s.name.equals(("_backout"))) {
                     int backoutCounter = 0;
-                    while(s.name.equals("_backout")) {
+                    while (s.name.equals("_backout")) {
                         backoutCounter += 1;
                         i += 2;
                         s = this.get(i);
@@ -91,15 +158,41 @@ public class CrystalTIDManip {
             }
             return ret;
         }
+
         void execute(Gb gb) {
-            for(Strat s : this) {
+            int waitIdx = -1;
+            for (Strat s : this) {
+                waitIdx++;
+                if (s instanceof WaitStrat) {
+                    String myRep = this.toString();
+                    myRep = myRep.substring(0, myRep.indexOf("_wait"));
+                    if (saveStates.containsKey(myRep)) {
+                        gb.loadState(saveStates.get(myRep));
+                        for (int n = waitIdx; n < this.size(); n++) {
+                            this.get(n).execute(gb);
+                        }
+                    } else {
+                        for (int n = 0; n < waitIdx; n++) {
+                            this.get(n).execute(gb);
+                        }
+                        saveStates.put(myRep, gb.saveState());
+                        for (int n = waitIdx; n < this.size(); n++) {
+                            this.get(n).execute(gb);
+                        }
+                    }
+                }
+            }
+            for (Strat s : this) {
                 s.execute(gb);
             }
         }
+
         int cost() {
             return this.stream().mapToInt((Strat s) -> s.cost).sum();
         }
-        @Override public int compareTo(IntroSequence o) {
+
+        @Override
+        public int compareTo(IntroSequence o) {
             return this.cost() - o.cost();
         }
     }
@@ -112,7 +205,7 @@ public class CrystalTIDManip {
 
     private static void addWaitPermutations(ArrayList<IntroSequence> introSequences, IntroSequence introSequence) {
         int ngmax = (MAX_COST - (introSequence.cost() + BASE_COST + 8));
-        for(int i=0; ngmax>=0 && i<=ngmax/98; i++) {
+        for (int i = 0; ngmax >= 0 && i <= ngmax / 98; i++) {
             introSequences.add(append(introSequence, newGame));
             introSequence = append(introSequence, backout, titleSkip);
         }
@@ -120,7 +213,7 @@ public class CrystalTIDManip {
 
     private static void addOptPermutations(ArrayList<IntroSequence> introSequences, IntroSequence introSequence) {
         int ngmax = (MAX_COST - (introSequence.cost() + BASE_COST + 8 + 95));
-        for(int i=0; ngmax>=0 && i<=ngmax/98; i++) {
+        for (int i = 0; ngmax >= 0 && i <= ngmax / 98; i++) {
             introSequences.add(append(introSequence, newGame));
             introSequence = append(introSequence, backout, titleSkip);
         }
@@ -133,87 +226,203 @@ public class CrystalTIDManip {
             System.exit(0);
         }
 
-        File file = new File("crystal_tids3_5263.txt");
+        File file = new File("crystal_clear_full_tids.txt");
         PrintWriter writer = new PrintWriter(file);
 
-        ArrayList<Strat> waitStrats = new ArrayList<>();
-        int maxwaits = (MAX_COST - BASE_COST - 54 - 8)/4;
-        for(int i=1; i<=maxwaits; i++) {
-            Integer[] addr = new Integer[i];
-            Integer[] input = new Integer[i];
-            Integer[] advFrames = new Integer[i];
-            for(int j=0; j<i; j++) {
-                addr[j] = CrystalAddr.mainMenuJoypadAddr;
-                input[j] = NO_INPUT;
-                advFrames[j] = 1;
-            }
-            waitStrats.add(new Strat("_wait" + i, i*4, addr, input, advFrames));
+        // Init gambattes as required
+        Gb[] gbs = new Gb[NUM_THREADS];
+        for (int i = 0; i < NUM_THREADS; i++) {
+            gbs[i] = new Gb();
+            gbs[i].loadBios("roms/gbc_bios.bin");
+            gbs[i].loadRom("roms/pokecrystal.gbc", LoadFlags.DEFAULT_LOAD_FLAGS);
+            gbs[i].advanceToAddress(0x0383);
         }
-
-        ArrayList<Strat> optStrats = new ArrayList<>();
-        for(int i=1; i<=maxwaits; i++) {
-            Integer[] addr = new Integer[i+2];
-            Integer[] input = new Integer[i+2];
-            Integer[] advFrames = new Integer[i+2];
-            addr[0] = CrystalAddr.readJoypadAddr;
-            input[0] = 0x80;
-            advFrames[0] = 1;
-            for(int j=1; j<i; j++) {
-                addr[j] = CrystalAddr.mainMenuJoypadAddr;
-                input[j] = NO_INPUT;
-                advFrames[j] = 1;
-            }
-            addr[i] = CrystalAddr.readJoypadAddr;
-            input[i] = A;
-            advFrames[i] = 1;
-            addr[i+1] = CrystalAddr.readJoypadAddr;
-            input[i+1] = START;
-            advFrames[i+1] = 1;
-            optStrats.add(new Strat("_wait" + i + "(opt)", i*4 + 95, addr, input, advFrames));
-        }
-
-        ArrayList<IntroSequence> introSequences = new ArrayList<>();
-        for(Strat s : intro) {
-            IntroSequence introSequence = new IntroSequence(s, titleSkip);
-            int ngmax = (MAX_COST - (introSequence.cost() + BASE_COST + 8));
-            for(int i=0; ngmax>=0 && i<=ngmax/98; i++) {
-                introSequences.add(append(introSequence, newGame));
-                for(Strat s2 : waitStrats) {
-                    IntroSequence base = append(introSequence, s2);
-                    addWaitPermutations(introSequences, base);
-                }
-  //               for(Strat s3 : optStrats) {
-  //                    IntroSequence base = append(introSequence, s3);
-  //                    addOptPermutations(introSequences, base);
-  //                }
-                introSequence = append(introSequence, backout, titleSkip);
-            }
-        }
-
-        System.out.println("Number of intro sequences: " + introSequences.size());
-        Collections.sort(introSequences);
-
-        // Init gambatte with 1 screen
-        Gb gb = new Gb();
-        gb.loadBios("roms/gbc_bios.bin");
-        gb.loadRom("roms/pokecrystal.gbc", LoadFlags.DEFAULT_LOAD_FLAGS);
-        gb.createDisplay(1);
-//      GBMemory mem = new GBMemory(gb);
-//      GBWrapper wrap = new GBWrapper(gb, mem);
-        gb.advanceToAddress(0x0383);
+        Gb gb = gbs[0];
         byte[] postBios = gb.saveState();
-        for(IntroSequence seq : introSequences) {
-            seq.execute(gb);
-            int tid = readTID(gb);
-            int lid = readLID(gb);
-            writer.println(
-                    seq.toString()
-                            + ": TID = " + String.format("0x%4s", Integer.toHexString(tid).toUpperCase()).replace(' ', '0') + " (" + String.format("%5s)", tid).replace(' ', '0')
-                            + ", LID = " + String.format("0x%4s", Integer.toHexString(lid).toUpperCase()).replace(' ', '0') + " (" + String.format("%5s)", lid).replace(' ', '0')
-                            + ", Cost: " + (seq.cost() + BASE_COST));
+
+        // start with intros
+        int numIntros = intro.size();
+        byte[][] introStates = new byte[numIntros][];
+        int[] baseCosts = new int[numIntros];
+
+        for (int i = 0; i < intro.size(); i++) {
+            Strat s = intro.get(i);
+            baseCosts[i] = s.cost + titleSkip.cost + BASE_COST + 8;
+            if (baseCosts[i] > MAX_COST) {
+                numIntros = i;
+                break;
+            }
             gb.loadState(postBios);
-//          gb.step(HARD_RESET);
-            writer.flush();
+            s.execute(gb);
+            titleSkip.execute(gb);
+            introStates[i] = gb.saveState();
+        }
+
+        System.out.println("saved " + numIntros + " intro states");
+
+        // calc results count
+        int numResults = 0;
+        for (int introN = 0; introN < numIntros; introN++) {
+            int maxBackouts = (MAX_COST - baseCosts[introN]) / 98;
+            for (int bo = 0; bo <= maxBackouts; bo++) {
+                int maxWait = (MAX_COST - baseCosts[introN] - bo * 98) / 4;
+                for (int w = 0; w <= maxWait; w++) {
+                    // do backout2 and advance now because of memory
+                    int maxBo2s = (MAX_COST - baseCosts[introN] - bo * 98 - w * 4) / 98;
+                    if (w == 0) {
+                        maxBo2s = 0; // stop double dipping
+                    }
+                    numResults += maxBo2s + 1;
+                }
+            }
+        }
+
+        System.out.println("calculated " + numResults + " results are coming");
+
+        // backouts
+        byte[][][] backout1States = new byte[numIntros][][];
+        int totalB1States = 0;
+        for (int introN = 0; introN < numIntros; introN++) {
+            int maxBackouts = (MAX_COST - baseCosts[introN]) / 98;
+            backout1States[introN] = new byte[maxBackouts + 1][];
+            backout1States[introN][0] = introStates[introN];
+            gb.loadState(introStates[introN]);
+            totalB1States += maxBackouts + 1;
+            for (int bo = 0; bo < maxBackouts; bo++) {
+                backout.execute(gb);
+                titleSkip.execute(gb);
+                backout1States[introN][bo + 1] = gb.saveState();
+            }
+        }
+        introStates = null; // dealloc
+
+        System.out.println("saved " + totalB1States + " backout 1 states");
+
+        // waits
+        Integer[] addr = new Integer[1];
+        Integer[] input = new Integer[1];
+        Integer[] advFrames = new Integer[1];
+        addr[0] = CrystalAddr.mainMenuJoypadAddr;
+        input[0] = NO_INPUT;
+        advFrames[0] = 1;
+        List<Result> allResults = new ArrayList<>();
+        final Strat wait1 = new Strat("", 4, addr, input, advFrames);
+        final int nR = numResults;
+
+        boolean[] threadsRunning = new boolean[NUM_THREADS];
+        for (int introN = 0; introN < numIntros; introN++) {
+            int mbs = backout1States[introN].length;
+            String introSeq = "crystal" + intro.get(introN).name;
+            for (int bo = 0; bo < mbs; bo++) {
+                int maxWait = (MAX_COST - baseCosts[introN] - bo * 98) / 4;
+                // gb.loadState(backout1States[introN][bo]);
+
+                String boSeq = bo > 0 ? introSeq + "_backout" + bo : introSeq;
+                boolean started = false;
+                while (!started) {
+                    synchronized (threadsRunning) {
+                        int threadIndex = -1;
+                        for (int i = 0; i < NUM_THREADS; i++) {
+                            if (!threadsRunning[i]) {
+                                threadIndex = i;
+                                break;
+                            }
+                        }
+                        if (threadIndex >= 0) {
+                            started = true;
+                            final int num = threadIndex;
+                            threadsRunning[threadIndex] = true;
+                            final int iN = introN;
+                            final int bO = bo;
+                            System.out.println("starting " + boSeq + " on thread " + threadIndex);
+                            Runnable run = () -> {
+                                List<Result> results = new ArrayList<>();
+                                Gb gbi = gbs[num];
+                                byte[] baseState = backout1States[iN][bO];
+                                gbi.loadState(baseState);
+                                for (int w = 0; w <= maxWait; w++) {
+                                    // do backout2 and advance now because of
+                                    // memory
+                                    int maxBo2s = (MAX_COST - baseCosts[iN] - bO * 98 - w * 4) / 98;
+                                    if (w == 0) {
+                                        maxBo2s = 0; // stop double dipping
+                                    }
+                                    byte[] baseBo2State = baseState;
+                                    String waitSeq = w > 0 ? boSeq + "_wait" + w : boSeq;
+                                    // System.out.printf("processing
+                                    // intro+backout+wait %s with %d bo2s\n",
+                                    // waitSeq, maxBo2s);
+                                    for (int bo2 = 0; bo2 <= maxBo2s; bo2++) {
+                                        newGame.execute(gbi);
+                                        int tid = readTID(gbi);
+                                        int lid = readLID(gbi);
+                                        int cost = baseCosts[iN] + bO * 98 + w * 4 + bo2 * 98;
+                                        String seq = bo2 > 0 ? waitSeq + "_backout" + bo2 : waitSeq;
+                                        results.add(new Result(seq, cost, tid, lid));
+
+                                        if (bo2 < maxBo2s) {
+                                            gbi.loadState(baseBo2State);
+                                            backout.execute(gbi);
+                                            titleSkip.execute(gbi);
+                                            baseBo2State = gbi.saveState();
+                                        }
+                                    }
+                                    if (w < maxWait) {
+                                        gbi.loadState(baseState);
+                                        wait1.execute(gbi);
+                                        baseState = gbi.saveState();
+                                    }
+                                }
+                                synchronized (threadsRunning) {
+                                    allResults.addAll(results);
+                                    threadsRunning[num] = false;
+                                    System.out.println(allResults.size() + "/" + nR);
+                                }
+                            };
+                            new Thread(run).start();
+                        }
+                    }
+                    if (!started) {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                        }
+                    }
+                }
+            }
+
+        }
+
+        int threadCount = 999;
+        while (threadCount > 0) {
+            synchronized (threadsRunning) {
+                threadCount = 0;
+                for (int i = 0; i < NUM_THREADS; i++) {
+                    if (threadsRunning[i]) {
+                        threadCount++;
+                    }
+                }
+            }
+            if (threadCount > 0) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                }
+            }
+        }
+
+        System.out.println("got " + allResults.size() + " results");
+        allResults.sort(new Comparator<Result>() {
+
+            @Override
+            public int compare(Result o1, Result o2) {
+                // TODO Auto-generated method stub
+                return o1.cost - o2.cost;
+            }
+        });
+        for (Result r : allResults) {
+            writer.println(String.format("%s_newgame: TID = 0x%04X (%05d), LID = 0x%04X (%05d), Cost: %d", r.seq, r.tid,
+                    r.tid, r.lid, r.lid, r.cost));
         }
         writer.close();
     }
@@ -224,5 +433,20 @@ public class CrystalTIDManip {
 
     private static int readLID(Gb gb) {
         return (gb.readMemory(0xDC9F) << 8) | gb.readMemory(0xDCA0);
+    }
+
+    static class Result {
+        String seq;
+        int cost;
+        int tid;
+        int lid;
+
+        public Result(String seq, int cost, int tid, int lid) {
+            super();
+            this.seq = seq;
+            this.cost = cost;
+            this.tid = tid;
+            this.lid = lid;
+        }
     }
 }
