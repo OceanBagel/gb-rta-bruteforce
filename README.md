@@ -1,4 +1,4 @@
-# gb-CC-bruteforce
+# gb-cc-bruteforce
 ==========
 
 Most of the code is from stringflow and entrpntr, it has been adapted to work for Crystal Clear.
