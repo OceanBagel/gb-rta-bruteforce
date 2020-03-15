@@ -9,7 +9,7 @@ Original README (with minor relevant fixes) below
 
 This is base code mimicking [entrpntr's codebase](http://github.com/entrpntr/gb-rta-bruteforce) using JNA rather than JNI. 
 
-#### Installation for Windows
+#### Installation
 
 Build `libgambatte.dll/.dylib/.so` (Instructions can be found [here](https://github.com/pokemon-speedrunning/gambatte-speedrun))
 
