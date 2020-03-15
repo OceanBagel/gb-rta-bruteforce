@@ -13,9 +13,9 @@ This is base code mimicking [entrpntr's codebase](http://github.com/entrpntr/gb-
 
 Build `libgambatte.dll/.dylib/.so` (Instructions can be found [here](https://github.com/pokemon-speedrunning/gambatte-speedrun))
 
-(You might need to change the libgambatte extension in src/rta/gambatte/Libgambatte.java depending on your OS.)
+(You might need to change the libgambatte extension [here](https://github.com/CasualPokePlayer/gb-cc-bruteforce/blob/master/src/rta/gambatte/Libgambatte.java#L10) depending on your OS.)
 
-Clone the repository, create a new folder called `libgambatte` and put the previously built dll in there. 
+Clone the repository, create a new folder called `libgambatte` and put the previously built library file in there. 
 
 Create another folder called `roms` and put `gbc_bios.bin` as well as `pokecrystal.gbc` in there.  
 
