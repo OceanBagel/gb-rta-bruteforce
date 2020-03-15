@@ -6,9 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import rta.CrystalAddr;
 import rta.gambatte.Gb;
@@ -28,7 +26,7 @@ public class CrystalTIDManip {
 
     private static final int NUM_THREADS = 8;
 
-    private static IntroStrat gfSkip = new IntroStrat("_gfskip", 0, new Integer[] { CrystalAddr.readJoypadAddr },
+    private static Strat gfSkip = new Strat("_gfskip", 0, new Integer[] { CrystalAddr.readJoypadAddr },
             new Integer[] { START }, new Integer[] { 1 });
     // private static Strat gfWait = new Strat("_gfwait", 384, new Integer[]
     // {CrystalAddr.introScene0Addr, CrystalAddr.readJoypadAddr}, new Integer[]
@@ -36,22 +34,22 @@ public class CrystalTIDManip {
     // private static Strat intro0 = new Strat("_intro0", 450, new Integer[]
     // {CrystalAddr.introScene1Addr, CrystalAddr.readJoypadAddr}, new Integer[]
     // {NO_INPUT, START}, new Integer[] {0, 1});
-    private static IntroStrat intro1 = new IntroStrat("_intro1", 624,
+    private static Strat intro1 = new Strat("_intro1", 624,
             new Integer[] { CrystalAddr.introScene3Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static IntroStrat intro2 = new IntroStrat("_intro2", 819,
+    private static Strat intro2 = new Strat("_intro2", 819,
             new Integer[] { CrystalAddr.introScene4Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static IntroStrat intro3 = new IntroStrat("_intro3", 1052,
+    private static Strat intro3 = new Strat("_intro3", 1052,
             new Integer[] { CrystalAddr.introScene5Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static IntroStrat intro4 = new IntroStrat("_intro4", 1396,
+    private static Strat intro4 = new Strat("_intro4", 1396,
             new Integer[] { CrystalAddr.introScene9Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static IntroStrat intro5 = new IntroStrat("_intro5", 1674,
+    private static Strat intro5 = new Strat("_intro5", 1674,
             new Integer[] { CrystalAddr.introScene11Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static IntroStrat intro6 = new IntroStrat("_intro6", 1871,
+    private static Strat intro6 = new Strat("_intro6", 1871,
             new Integer[] { CrystalAddr.introScene13Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
     // private static Strat intro16 = new Strat("_intro7", 2085, new Integer[]
@@ -99,123 +97,6 @@ public class CrystalTIDManip {
                     gb.advanceFrame(input[i]);
                 }
             }
-        }
-    }
-
-    static class IntroStrat extends Strat {
-        byte[] state;
-
-        IntroStrat(String name, int cost, Integer[] addr, Integer[] input, Integer[] advanceFrames) {
-            super(name, cost, addr, input, advanceFrames);
-            state = null;
-        }
-
-        public void execute(Gb gb) {
-            if (state == null) {
-                super.execute(gb);
-                state = gb.saveState();
-            } else {
-                gb.loadState(state);
-            }
-        }
-    }
-
-    static class WaitStrat extends Strat {
-        WaitStrat(String name, int cost, Integer[] addr, Integer[] input, Integer[] advanceFrames) {
-            super(name, cost, addr, input, advanceFrames);
-        }
-    }
-
-    static class IntroSequence extends ArrayList<Strat> implements Comparable<IntroSequence> {
-        static Map<String, byte[]> saveStates;
-        static {
-            saveStates = new HashMap<String, byte[]>();
-        }
-
-        IntroSequence(Strat... strats) {
-            super(Arrays.asList(strats));
-        }
-
-        IntroSequence(IntroSequence other) {
-            super(other);
-        }
-
-        @Override
-        public String toString() {
-            String ret = "crystal";
-            for (int i = 0; i < this.size(); i++) {
-                Strat s = this.get(i);
-                if (s.name.equals(("_backout"))) {
-                    int backoutCounter = 0;
-                    while (s.name.equals("_backout")) {
-                        backoutCounter += 1;
-                        i += 2;
-                        s = this.get(i);
-                    }
-                    ret += "_backout" + backoutCounter;
-                }
-                ret += s.name;
-            }
-            return ret;
-        }
-
-        void execute(Gb gb) {
-            int waitIdx = -1;
-            for (Strat s : this) {
-                waitIdx++;
-                if (s instanceof WaitStrat) {
-                    String myRep = this.toString();
-                    myRep = myRep.substring(0, myRep.indexOf("_wait"));
-                    if (saveStates.containsKey(myRep)) {
-                        gb.loadState(saveStates.get(myRep));
-                        for (int n = waitIdx; n < this.size(); n++) {
-                            this.get(n).execute(gb);
-                        }
-                    } else {
-                        for (int n = 0; n < waitIdx; n++) {
-                            this.get(n).execute(gb);
-                        }
-                        saveStates.put(myRep, gb.saveState());
-                        for (int n = waitIdx; n < this.size(); n++) {
-                            this.get(n).execute(gb);
-                        }
-                    }
-                }
-            }
-            for (Strat s : this) {
-                s.execute(gb);
-            }
-        }
-
-        int cost() {
-            return this.stream().mapToInt((Strat s) -> s.cost).sum();
-        }
-
-        @Override
-        public int compareTo(IntroSequence o) {
-            return this.cost() - o.cost();
-        }
-    }
-
-    private static IntroSequence append(IntroSequence seq, Strat... strats) {
-        IntroSequence newSeq = new IntroSequence(seq);
-        newSeq.addAll(Arrays.asList(strats));
-        return newSeq;
-    }
-
-    private static void addWaitPermutations(ArrayList<IntroSequence> introSequences, IntroSequence introSequence) {
-        int ngmax = (MAX_COST - (introSequence.cost() + BASE_COST + 8));
-        for (int i = 0; ngmax >= 0 && i <= ngmax / 98; i++) {
-            introSequences.add(append(introSequence, newGame));
-            introSequence = append(introSequence, backout, titleSkip);
-        }
-    }
-
-    private static void addOptPermutations(ArrayList<IntroSequence> introSequences, IntroSequence introSequence) {
-        int ngmax = (MAX_COST - (introSequence.cost() + BASE_COST + 8 + 95));
-        for (int i = 0; ngmax >= 0 && i <= ngmax / 98; i++) {
-            introSequences.add(append(introSequence, newGame));
-            introSequence = append(introSequence, backout, titleSkip);
         }
     }
 
