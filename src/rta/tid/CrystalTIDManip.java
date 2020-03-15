@@ -61,8 +61,8 @@ public class CrystalTIDManip {
     // private static Strat intro25 = new Strat("_intro9", 2565, new Integer[]
     // {CrystalAddr.introScene26Addr, CrystalAddr.readJoypadAddr}, new Integer[]
     // {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat introwait = new Strat("_introwait", 5196, new Integer[] { CrystalAddr.titleScreenAddr },
-            new Integer[] { NO_INPUT }, new Integer[] { 0 });
+    // private static Strat introwait = new Strat("_introwait", 5196, new Integer[] { CrystalAddr.titleScreenAddr },
+    //        new Integer[] { NO_INPUT }, new Integer[] { 0 });
 
     // private static Strat titleSkip = new Strat("_title", 54, new Integer[]
     // {CrystalAddr.readJoypadAddr}, new Integer[] {START}, new Integer[] {1});
@@ -73,7 +73,7 @@ public class CrystalTIDManip {
     private static Strat backout = new Strat("_backout", 57, new Integer[] { CrystalAddr.readJoypadAddr },
             new Integer[] { B }, new Integer[] { 1 });
 
-    private static List<Strat> intro = Arrays.asList(gfSkip, intro1, intro2, intro3, intro4, intro5, intro6, introwait);
+    private static List<Strat> intro = Arrays.asList(gfSkip, intro1, intro2, intro3, intro4, intro5, intro6);
 
     static class Strat {
         String name;
