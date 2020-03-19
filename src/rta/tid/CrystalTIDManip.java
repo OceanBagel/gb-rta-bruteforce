@@ -26,12 +26,14 @@ public class CrystalTIDManip {
 
     private static final int NUM_THREADS = 8;
 
-    private static Strat gfSkip = new Strat("_gfskip", 0, new Integer[] { CrystalAddr.readJoypadAddr },
+    private static Strat gfSkip = new Strat("_gfskip", 0,
+            new Integer[] { CrystalAddr.readJoypadAddr },
             new Integer[] { START }, new Integer[] { 1 });
     // private static Strat gfWait = new Strat("_gfwait", 384, new Integer[]
     // {CrystalAddr.introScene0Addr, CrystalAddr.readJoypadAddr}, new Integer[]
     // {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat intro0 = new Strat("_intro0", 450, new Integer[] {CrystalAddr.introScene1Addr, CrystalAddr.readJoypadAddr},
+    private static Strat intro0 = new Strat("_intro0", 61,
+            new Integer[] {CrystalAddr.introScene1Addr, CrystalAddr.readJoypadAddr},
             new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
     private static Strat intro1 = new Strat("_intro1", 294,
             new Integer[] { CrystalAddr.introScene3Addr, CrystalAddr.readJoypadAddr },
@@ -60,9 +62,8 @@ public class CrystalTIDManip {
     // private static Strat intro25 = new Strat("_intro9", 2565, new Integer[]
     // {CrystalAddr.introScene26Addr, CrystalAddr.readJoypadAddr}, new Integer[]
     // {NO_INPUT, START}, new Integer[] {0, 1});
-    // private static Strat introwait = new Strat("_introwait", 5196, new Integer[] { CrystalAddr.titleScreenAddr },
-    //        new Integer[] { NO_INPUT }, new Integer[] { 0 });
-
+    private static Strat introwait = new Strat("_introwait", 1208, new Integer[] { CrystalAddr.titleScreenAddr },
+            new Integer[] { NO_INPUT }, new Integer[] { 0 });
     // private static Strat titleSkip = new Strat("_title", 54, new Integer[]
     // {CrystalAddr.readJoypadAddr}, new Integer[] {START}, new Integer[] {1});
     private static Strat titleSkip = new Strat("", 52, new Integer[] { CrystalAddr.readJoypadAddr },
@@ -72,7 +73,7 @@ public class CrystalTIDManip {
     private static Strat backout = new Strat("_backout", 57, new Integer[] { CrystalAddr.readJoypadAddr },
             new Integer[] { B }, new Integer[] { 1 });
 
-    private static List<Strat> intro = Arrays.asList(gfSkip, intro1, intro2, intro3, intro4, intro5, intro6);
+    private static List<Strat> intro = Arrays.asList(gfSkip, intro0, intro1, intro2, intro3, intro4, intro5, intro6, introwait);
 
     static class Strat {
         String name;
