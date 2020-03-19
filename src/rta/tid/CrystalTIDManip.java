@@ -31,9 +31,8 @@ public class CrystalTIDManip {
     // private static Strat gfWait = new Strat("_gfwait", 384, new Integer[]
     // {CrystalAddr.introScene0Addr, CrystalAddr.readJoypadAddr}, new Integer[]
     // {NO_INPUT, START}, new Integer[] {0, 1});
-    // private static Strat intro0 = new Strat("_intro0", 450, new Integer[]
-    // {CrystalAddr.introScene1Addr, CrystalAddr.readJoypadAddr}, new Integer[]
-    // {NO_INPUT, START}, new Integer[] {0, 1});
+    private static Strat intro0 = new Strat("_intro0", 450, new Integer[] {CrystalAddr.introScene1Addr, CrystalAddr.readJoypadAddr},
+            new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
     private static Strat intro1 = new Strat("_intro1", 294,
             new Integer[] { CrystalAddr.introScene3Addr, CrystalAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
