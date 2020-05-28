@@ -324,7 +324,6 @@ public class YellowTIDManip {
                 int ngmax = (MAX_COST - ngcost - 498);
                 if(ngmax>=0) {
                     s4seqs.add(append(s3, title));
-                    s4seqs.add(append(s3, titleUsbCancel));
                 }
 
                 int rscost = ngcost + 371 + 61 + 147;
@@ -333,6 +332,7 @@ public class YellowTIDManip {
                     resetSequences.add(append(s3, titleReset));
                     resetSequences.add(append(s3, titleUsb));
                     resetSequences.add(append(s3, title, ngReset));
+                    resetSequences.add(append(s3, titleUsbCancel));
                 }
             }
             s3seqs.clear();
