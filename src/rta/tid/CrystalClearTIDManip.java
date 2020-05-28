@@ -8,11 +8,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import rta.CrystalAddr;
+import rta.CrystalClearAddr;
 import rta.gambatte.Gb;
 import rta.gambatte.LoadFlags;
 
-public class CrystalTIDManip {
+public class CrystalClearTIDManip {
     private static final int NO_INPUT = 0x00;
     private static final int A = 0x01;
     private static final int B = 0x02;
@@ -29,79 +29,79 @@ public class CrystalTIDManip {
 
     private static Strat gfSkip =
             new Strat("_gfskip", 0,
-            new Integer[] { CrystalAddr.readJoypadAddr },
+            new Integer[] { CrystalClearAddr.readJoypadAddr },
             new Integer[] { START },
             new Integer[] { 1 });
     
     private static Strat intro0 =
             new Strat("_intro0", 61,
-            new Integer[] {CrystalAddr.introScene1Addr, CrystalAddr.readJoypadAddr},
+            new Integer[] {CrystalClearAddr.introScene1Addr, CrystalClearAddr.readJoypadAddr},
             new Integer[] {NO_INPUT, START},
             new Integer[] {0, 1});
     
     private static Strat intro1 =
             new Strat("_intro1", 294,
-            new Integer[] { CrystalAddr.introScene3Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { CrystalClearAddr.introScene3Addr, CrystalClearAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START },
             new Integer[] { 0, 1 });
     
     private static Strat intro2 =
             new Strat("_intro2", 407,
-            new Integer[] { CrystalAddr.introScene4Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { CrystalClearAddr.introScene4Addr, CrystalClearAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START },
             new Integer[] { 0, 1 });
     
     private static Strat intro3 =
             new Strat("_intro3", 546,
-            new Integer[] { CrystalAddr.introScene5Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { CrystalClearAddr.introScene5Addr, CrystalClearAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START },
             new Integer[] { 0, 1 });
     
     private static Strat intro4 =
             new Strat("_intro4", 883,
-            new Integer[] { CrystalAddr.introScene9Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { CrystalClearAddr.introScene9Addr, CrystalClearAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START },
             new Integer[] { 0, 1 });
     
     private static Strat intro5 =
             new Strat("_intro5", 1042,
-            new Integer[] { CrystalAddr.introScene11Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { CrystalClearAddr.introScene11Addr, CrystalClearAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START },
             new Integer[] { 0, 1 });
     
     private static Strat intro6 =
             new Strat("_intro6", 1215,
-            new Integer[] { CrystalAddr.introScene13Addr, CrystalAddr.readJoypadAddr },
+            new Integer[] { CrystalClearAddr.introScene13Addr, CrystalClearAddr.readJoypadAddr },
             new Integer[] { NO_INPUT, START },
             new Integer[] { 0, 1 });
     
     private static Strat introwait =
             new Strat("_introwait", 1208,
-            new Integer[] { CrystalAddr.titleScreenAddr },
+            new Integer[] { CrystalClearAddr.titleScreenAddr },
             new Integer[] { NO_INPUT },
             new Integer[] { 0 });
     
  // private static Strat titleSkip =
  //         new Strat("_title", 54, 
- //         new Integer[] {CrystalAddr.readJoypadAddr},
+ //         new Integer[] {CrystalClearAddr.readJoypadAddr},
  //         new Integer[] {START},
  //         new Integer[] {1});
     
     private static Strat titleSkip =
             new Strat("", 52,
-            new Integer[] { CrystalAddr.readJoypadAddr },
+            new Integer[] { CrystalClearAddr.readJoypadAddr },
             new Integer[] { START },
             new Integer[] { 1 });
     
     private static Strat newGame =
             new Strat("_newgame", 8,
-            new Integer[] { CrystalAddr.readJoypadAddr },
+            new Integer[] { CrystalClearAddr.readJoypadAddr },
             new Integer[] { A },
             new Integer[] { 52 });
     
     private static Strat backout =
             new Strat("_backout", 57,
-            new Integer[] { CrystalAddr.readJoypadAddr },
+            new Integer[] { CrystalClearAddr.readJoypadAddr },
             new Integer[] { B },
             new Integer[] { 1 });
 
@@ -147,7 +147,7 @@ public class CrystalTIDManip {
         for (int i = 0; i < NUM_THREADS; i++) {
             gbs[i] = new Gb();
             gbs[i].loadBios("roms/gbc_bios.bin");
-            gbs[i].loadRom("roms/pokecrystal.gbc", LoadFlags.DEFAULT_LOAD_FLAGS);
+            gbs[i].loadRom("roms/pokecrystalclear.gbc", LoadFlags.DEFAULT_LOAD_FLAGS);
             gbs[i].advanceToAddress(0x0383);
         }
         Gb gb = gbs[0];
@@ -215,7 +215,7 @@ public class CrystalTIDManip {
         Integer[] addr = new Integer[1];
         Integer[] input = new Integer[1];
         Integer[] advFrames = new Integer[1];
-        addr[0] = CrystalAddr.mainMenuJoypadAddr;
+        addr[0] = CrystalClearAddr.mainMenuJoypadAddr;
         input[0] = NO_INPUT;
         advFrames[0] = 1;
         List<Result> allResults = new ArrayList<>();
@@ -225,7 +225,7 @@ public class CrystalTIDManip {
         boolean[] threadsRunning = new boolean[NUM_THREADS];
         for (int introN = 0; introN < numIntros; introN++) {
             int mbs = backout1States[introN].length;
-            String introSeq = "crystal" + intro.get(introN).name;
+            String introSeq = "CrystalClear" + intro.get(introN).name;
             for (int bo = 0; bo < mbs; bo++) {
                 int maxWait = (MAX_COST - baseCosts[introN] - bo * 109) / 4;
                 // gb.loadState(backout1States[introN][bo]);
