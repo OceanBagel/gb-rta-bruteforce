@@ -109,9 +109,9 @@ public class YellowTIDManip {
 
     private static Strat titleUsbCancel =
 	new Strat("_title(usb)_cscancel", 400 + 90, // guessing here??
-	new Integer[] {YellowAddr.joypadAddr, YellowAddr.noYesAddr, YellowAddr.joypadAddr},
-	new Integer[] {UP | SELECT | B, NO_INPUT, A},
-	new Integer[] {1, 0, 1});
+	new Integer[] {YellowAddr.joypadAddr, YellowAddr.printLetterDelayAddr, YellowAddr.noYesAddr, YellowAddr.joypadAddr},
+	new Integer[] {UP | SELECT | B, B, NO_INPUT, A},
+	new Integer[] {1, 0, 0, 1});
 
     private static ResetStrat gfReset =
 	new ResetStrat("_gfreset", 371,
@@ -382,8 +382,8 @@ public class YellowTIDManip {
 	gb.loadBios("roms/gbc_bios.bin");
 	gb.loadRom("roms/pokeyellow.gbc",
 	LoadFlags.DEFAULT_LOAD_FLAGS);
-	gb.advanceToAddress(0x0000);
-	byte[] Bios = gb.saveState();
+	gb.advanceToAddress(YellowAddr.initAddr);
+	byte[] PostBios = gb.saveState();
         for(IntroSequence seq : introSequences) {
             seq.execute(gb);
             int tid = readTID(gb);
@@ -392,7 +392,7 @@ public class YellowTIDManip {
                             + String.format("0x%4s", Integer.toHexString(tid).toUpperCase()).replace(' ', '0')
                             + " (" + String.format("%5s)", tid).replace(' ', '0')
                             + ", Cost: " + (seq.cost() + 498));
-            gb.loadState(Bios);
+            gb.loadState(PostBios);
             writer.flush();
         }
         writer.close();
