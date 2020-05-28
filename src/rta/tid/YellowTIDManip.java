@@ -21,7 +21,7 @@ public class YellowTIDManip {
     private static final int UP = 0x40;
 
     /* Change this to increase/decrease number of intro sequence combinations processed */
-    private static final int MAX_COST = 3000;
+    private static final int MAX_COST = 3600; // ~1 minute
     /* Change this to include/disclude the intro buffers with smaller windows for success */
     private static final boolean includeTightWindows = true;
 
