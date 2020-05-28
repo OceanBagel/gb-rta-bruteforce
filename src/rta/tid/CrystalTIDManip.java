@@ -20,58 +20,90 @@ public class CrystalTIDManip {
 
     // Change this to increase/decrease number of intro sequence combinations
     // processed
+    
     private static final int MAX_COST = 3600;
 
     private static final int BASE_COST = 859;
 
     private static final int NUM_THREADS = 8;
 
-    private static Strat gfSkip = new Strat("_gfskip", 0,
+    private static Strat gfSkip =
+            new Strat("_gfskip", 0,
             new Integer[] { CrystalAddr.readJoypadAddr },
-            new Integer[] { START }, new Integer[] { 1 });
-    // private static Strat gfWait = new Strat("_gfwait", 384, new Integer[]
-    // {CrystalAddr.introScene0Addr, CrystalAddr.readJoypadAddr}, new Integer[]
-    // {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat intro0 = new Strat("_intro0", 61,
+            new Integer[] { START },
+            new Integer[] { 1 });
+    
+    private static Strat intro0 =
+            new Strat("_intro0", 61,
             new Integer[] {CrystalAddr.introScene1Addr, CrystalAddr.readJoypadAddr},
-            new Integer[] {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat intro1 = new Strat("_intro1", 294,
+            new Integer[] {NO_INPUT, START},
+            new Integer[] {0, 1});
+    
+    private static Strat intro1 =
+            new Strat("_intro1", 294,
             new Integer[] { CrystalAddr.introScene3Addr, CrystalAddr.readJoypadAddr },
-            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static Strat intro2 = new Strat("_intro2", 407,
+            new Integer[] { NO_INPUT, START },
+            new Integer[] { 0, 1 });
+    
+    private static Strat intro2 =
+            new Strat("_intro2", 407,
             new Integer[] { CrystalAddr.introScene4Addr, CrystalAddr.readJoypadAddr },
-            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static Strat intro3 = new Strat("_intro3", 546,
+            new Integer[] { NO_INPUT, START },
+            new Integer[] { 0, 1 });
+    
+    private static Strat intro3 =
+            new Strat("_intro3", 546,
             new Integer[] { CrystalAddr.introScene5Addr, CrystalAddr.readJoypadAddr },
-            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static Strat intro4 = new Strat("_intro4", 883,
+            new Integer[] { NO_INPUT, START },
+            new Integer[] { 0, 1 });
+    
+    private static Strat intro4 =
+            new Strat("_intro4", 883,
             new Integer[] { CrystalAddr.introScene9Addr, CrystalAddr.readJoypadAddr },
-            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static Strat intro5 = new Strat("_intro5", 1042,
+            new Integer[] { NO_INPUT, START },
+            new Integer[] { 0, 1 });
+    
+    private static Strat intro5 =
+            new Strat("_intro5", 1042,
             new Integer[] { CrystalAddr.introScene11Addr, CrystalAddr.readJoypadAddr },
-            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    private static Strat intro6 = new Strat("_intro6", 1215,
+            new Integer[] { NO_INPUT, START },
+            new Integer[] { 0, 1 });
+    
+    private static Strat intro6 =
+            new Strat("_intro6", 1215,
             new Integer[] { CrystalAddr.introScene13Addr, CrystalAddr.readJoypadAddr },
-            new Integer[] { NO_INPUT, START }, new Integer[] { 0, 1 });
-    // private static Strat intro16 = new Strat("_intro7", 2085, new Integer[]
-    // {CrystalAddr.introScene17Addr, CrystalAddr.readJoypadAddr}, new Integer[]
-    // {NO_INPUT, START}, new Integer[] {0, 1});
-    // private static Strat intro18 = new Strat("_intro8", 2254, new Integer[]
-    // {CrystalAddr.introScene19Addr, CrystalAddr.readJoypadAddr}, new Integer[]
-    // {NO_INPUT, START}, new Integer[] {0, 1});
-    // private static Strat intro25 = new Strat("_intro9", 2565, new Integer[]
-    // {CrystalAddr.introScene26Addr, CrystalAddr.readJoypadAddr}, new Integer[]
-    // {NO_INPUT, START}, new Integer[] {0, 1});
-    private static Strat introwait = new Strat("_introwait", 1208, new Integer[] { CrystalAddr.titleScreenAddr },
-            new Integer[] { NO_INPUT }, new Integer[] { 0 });
-    // private static Strat titleSkip = new Strat("_title", 54, new Integer[]
-    // {CrystalAddr.readJoypadAddr}, new Integer[] {START}, new Integer[] {1});
-    private static Strat titleSkip = new Strat("", 52, new Integer[] { CrystalAddr.readJoypadAddr },
-            new Integer[] { START }, new Integer[] { 1 });
-    private static Strat newGame = new Strat("_newgame", 8, new Integer[] { CrystalAddr.readJoypadAddr },
-            new Integer[] { A }, new Integer[] { 52 });
-    private static Strat backout = new Strat("_backout", 57, new Integer[] { CrystalAddr.readJoypadAddr },
-            new Integer[] { B }, new Integer[] { 1 });
+            new Integer[] { NO_INPUT, START },
+            new Integer[] { 0, 1 });
+    
+    private static Strat introwait =
+            new Strat("_introwait", 1208,
+            new Integer[] { CrystalAddr.titleScreenAddr },
+            new Integer[] { NO_INPUT },
+            new Integer[] { 0 });
+    
+ // private static Strat titleSkip =
+ //         new Strat("_title", 54, 
+ //         new Integer[] {CrystalAddr.readJoypadAddr},
+ //         new Integer[] {START},
+ //         new Integer[] {1});
+    
+    private static Strat titleSkip =
+            new Strat("", 52,
+            new Integer[] { CrystalAddr.readJoypadAddr },
+            new Integer[] { START },
+            new Integer[] { 1 });
+    
+    private static Strat newGame =
+            new Strat("_newgame", 8,
+            new Integer[] { CrystalAddr.readJoypadAddr },
+            new Integer[] { A },
+            new Integer[] { 52 });
+    
+    private static Strat backout =
+            new Strat("_backout", 57,
+            new Integer[] { CrystalAddr.readJoypadAddr },
+            new Integer[] { B },
+            new Integer[] { 1 });
 
     private static List<Strat> intro = Arrays.asList(gfSkip, intro0, intro1, intro2, intro3, intro4, intro5, intro6, introwait);
 
