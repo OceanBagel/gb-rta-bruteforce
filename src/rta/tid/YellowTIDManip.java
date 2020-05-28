@@ -108,7 +108,7 @@ public class YellowTIDManip {
 	new Integer[] {1});
 
     private static Strat titleUsbCancel =
-	new Strat("_title(usb)_cscancel", 300 + 90, // guessing here??
+	new Strat("_title(usb)_cscancel", 400 + 90, // guessing here??
 	new Integer[] {YellowAddr.joypadAddr, YellowAddr.noYesAddr, YellowAddr.joypadAddr},
 	new Integer[] {UP | SELECT | B, NO_INPUT, A},
 	new Integer[] {1, 0, 1});
