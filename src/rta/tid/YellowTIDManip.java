@@ -402,4 +402,3 @@ public class YellowTIDManip {
         return (gb.readMemory(0xD358) << 8) | gb.readMemory(0xD359);
     }
 }
-3:76E6
