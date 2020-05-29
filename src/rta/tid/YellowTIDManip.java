@@ -91,7 +91,7 @@ public class YellowTIDManip {
 
     private static Strat newGame =
 	new Strat("_newgame", 20 + 20,
-	new Integer[] {YellowAddr.joypadAddr, YellowAddr.postTID},
+	new Integer[] {YellowAddr.joypadAddr, YellowAddr.postTIDAddr},
 	new Integer[] {A, NO_INPUT},
 	new Integer[] {1, 0});
 
