@@ -391,7 +391,7 @@ public class YellowTIDManip {
                     seq.toString() + ": "
                             + String.format("0x%4s", Integer.toHexString(tid).toUpperCase()).replace(' ', '0')
                             + " (" + String.format("%5s)", tid).replace(' ', '0')
-                            + ", Offset: " + getGbpTime());
+                            + ", Offset: " + gb.getGbpTime());
             gb.loadState(PostBios);
             writer.flush();
         }
