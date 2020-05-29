@@ -91,9 +91,9 @@ public class YellowTIDManip {
 
     private static Strat newGame =
 	new Strat("_newgame", 20 + 20,
-	new Integer[] {YellowAddr.joypadAddr},
-	new Integer[] {A},
-	new Integer[] {40});
+	new Integer[] {YellowAddr.joypadAddr, YellowAddr.postTID},
+	new Integer[] {A, NO_INPUT},
+	new Integer[] {1, 0});
 
     private static Strat backout =
 	new Strat("_backout", 140 + 20,
@@ -391,7 +391,7 @@ public class YellowTIDManip {
                     seq.toString() + ": "
                             + String.format("0x%4s", Integer.toHexString(tid).toUpperCase()).replace(' ', '0')
                             + " (" + String.format("%5s)", tid).replace(' ', '0')
-                            + ", Cost: " + (seq.cost() + 498));
+                            + ", Offset: " + getGbpTime());
             gb.loadState(PostBios);
             writer.flush();
         }
@@ -402,3 +402,4 @@ public class YellowTIDManip {
         return (gb.readMemory(0xD358) << 8) | gb.readMemory(0xD359);
     }
 }
+3:76E6
