@@ -20,4 +20,5 @@ public class YellowAddr {
     public static final int noYesAddr = 0x074245;
     public static final int printLetterDelayAddr = 0x38C8;
     public static final int initAddr = 0x1D10;
+    public static final int postTIDAddr = 0x0376E6;
 }
