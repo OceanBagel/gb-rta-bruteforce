@@ -388,7 +388,6 @@ public class YellowTIDManip {
 	gb.loadBios("roms/gbc_bios.bin");
 	gb.loadRom("roms/pokeyellow.gbc",
 	LoadFlags.DEFAULT_LOAD_FLAGS);
-	gb.createDisplay(1);
 	gb.advanceToAddress(YellowAddr.initAddr);
 	byte[] PostBios = gb.saveState();
         for(IntroSequence seq : introSequences) {
