@@ -22,7 +22,7 @@ public class YellowTIDManip {
 
     /* Change this to increase/decrease number of intro sequence combinations processed */
     private static final int MAX_COST = 3600; // ~1 minute
-    /* Change this to include/disclude the intro buffers with smaller windows for success */
+    /* Change this to include/exclude the intro buffers with smaller windows for success */
     private static final boolean includeTightWindows = true;
 
     private static Strat gfSkip =
@@ -106,12 +106,18 @@ public class YellowTIDManip {
 	new Integer[] {YellowAddr.joypadAddr},
 	new Integer[] {START},
 	new Integer[] {1});
+    
+    private static Strat titleUsb =
+	new Strat("_title(usb)", 90,
+	new Integer[] {YellowAddr.joypadAddr},
+	new Integer[] {UP | SELECT | B},
+	new Integer[] {1});
 
-    private static Strat titleUsbCancel =
-	new Strat("_title(usb)_cscancel", 400 + 90, // guessing here??
-	new Integer[] {YellowAddr.joypadAddr, YellowAddr.printLetterDelayAddr, YellowAddr.noYesAddr, YellowAddr.joypadAddr},
-	new Integer[] {UP | SELECT | B, B, NO_INPUT, A},
-	new Integer[] {1, 0, 0, 1});
+    private static Strat csCancel =
+	new Strat("_cscancel", 400, // guessing here??
+	new Integer[] {YellowAddr.printLetterDelayAddr, YellowAddr.noYesAddr, YellowAddr.joypadAddr},
+	new Integer[] {B, NO_INPUT, A},
+	new Integer[] {0, 0, 1});
 
     private static ResetStrat gfReset =
 	new ResetStrat("_gfreset", 371,
@@ -181,11 +187,11 @@ public class YellowTIDManip {
 	new Integer[] {A | B | START | SELECT},
 	new Integer[] {0});
 	
-    private static ResetStrat titleUsb =
-	new ResetStrat("_title(usb)_csreset", 371 + 90,
+    private static ResetStrat csReset =
+	new ResetStrat("_csreset", 371,
 	new Integer[] {YellowAddr.joypadAddr},
-	new Integer[] {UP | SELECT | B},
-	new Integer[] {1});
+	new Integer[] {A | B | START | SELECT},
+	new Integer[] {0});
 	
     static class Strat {
         String name;
@@ -330,9 +336,9 @@ public class YellowTIDManip {
                 int rsmax = (MAX_COST - rscost - 498);
                 if(rsmax >= 0) {
                     resetSequences.add(append(s3, titleReset));
-                    resetSequences.add(append(s3, titleUsb));
+                    resetSequences.add(append(s3, titleUsb, csReset));
                     resetSequences.add(append(s3, title, ngReset));
-                    resetSequences.add(append(s3, titleUsbCancel));
+                    resetSequences.add(append(s3, titleUsb, csCancel));
                 }
             }
             s3seqs.clear();
@@ -382,6 +388,7 @@ public class YellowTIDManip {
 	gb.loadBios("roms/gbc_bios.bin");
 	gb.loadRom("roms/pokeyellow.gbc",
 	LoadFlags.DEFAULT_LOAD_FLAGS);
+	gb.createDisplay(1);
 	gb.advanceToAddress(YellowAddr.initAddr);
 	byte[] PostBios = gb.saveState();
         for(IntroSequence seq : introSequences) {
@@ -391,9 +398,10 @@ public class YellowTIDManip {
                     seq.toString() + ": "
                             + String.format("0x%4s", Integer.toHexString(tid).toUpperCase()).replace(' ', '0')
                             + " (" + String.format("%5s)", tid).replace(' ', '0')
-                            + ", Offset: " + gb.getGbpTime());
+                            + ", Offset: " + String.format("%.02f", (gb.getGbpTime() - 0.47)));
             gb.loadState(PostBios);
             writer.flush();
+            System.out.printf("Current Cost: %d%n", seq.cost());
         }
         writer.close();
     }
