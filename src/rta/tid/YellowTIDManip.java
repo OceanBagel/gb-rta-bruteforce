@@ -134,37 +134,37 @@ public class YellowTIDManip {
     private static ResetStrat intro1Reset =
 	new ResetStrat("_intro1(reset)", 371 + 140,
 	new Integer[] {YellowAddr.intro2Addr},
-	new Integer[] {A | B | START | SELECT},
+	new Integer[] {NO_INPUT},
 	new Integer[] {0});
 
     private static ResetStrat intro2Reset =
 	new ResetStrat("_intro2(reset)", 371 + 275,
 	new Integer[] {YellowAddr.intro4Addr},
-	new Integer[] {A | B | START | SELECT},
+	new Integer[] {NO_INPUT},
 	new Integer[] {0});
 
     private static ResetStrat intro3Reset =
 	new ResetStrat("_intro3(reset)", 371 + 411,
 	new Integer[] {YellowAddr.intro6Addr},
-	new Integer[] {A | B | START | SELECT},
+	new Integer[] {NO_INPUT},
 	new Integer[] {0});
 
     private static ResetStrat intro4Reset =
 	new ResetStrat("_intro4(reset)", 371 + 594,
 	new Integer[] {YellowAddr.intro8Addr},
-	new Integer[] {A | B | START | SELECT},
+	new Integer[] {NO_INPUT},
 	new Integer[] {0});
 
     private static ResetStrat intro5Reset =
 	new ResetStrat("_intro5(reset)", 371 + 729,
 	new Integer[] {YellowAddr.intro10Addr},
-	new Integer[] {A | B | START | SELECT},
+	new Integer[] {NO_INPUT},
 	new Integer[] {0});
 
     private static ResetStrat intro6Reset =
 	new ResetStrat("_intro6(reset)", 371 + 864,
 	new Integer[] {YellowAddr.intro12Addr},
-	new Integer[] {A | B | START | SELECT},
+	new Integer[] {NO_INPUT},
 	new Integer[] {0});
 
     private static List<Strat> introReset = Arrays.asList(intro0Reset, intro1Reset, intro2Reset, intro3Reset, intro4Reset, intro5Reset, intro6Reset);
@@ -337,8 +337,8 @@ public class YellowTIDManip {
                 if(rsmax >= 0) {
                     resetSequences.add(append(s3, titleReset));
                     resetSequences.add(append(s3, titleUsb, csReset));
-                    resetSequences.add(append(s3, title, ngReset));
                     resetSequences.add(append(s3, titleUsb, csCancel));
+                    resetSequences.add(append(s3, title, ngReset));
                 }
             }
             s3seqs.clear();
