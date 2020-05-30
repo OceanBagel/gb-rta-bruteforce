@@ -114,9 +114,9 @@ public class YellowTIDManip {
 	new Integer[] {1});
 
     private static Strat csCancel =
-	new Strat("_cscancel", 400, // guessing here??
+	new Strat("_cscancel", 365,
 	new Integer[] {YellowAddr.printLetterDelayAddr, YellowAddr.noYesAddr, YellowAddr.joypadAddr},
-	new Integer[] {B, NO_INPUT, A},
+	new Integer[] {B, B, A},
 	new Integer[] {0, 0, 1});
 
     private static ResetStrat gfReset =
@@ -336,8 +336,8 @@ public class YellowTIDManip {
                 int rsmax = (MAX_COST - rscost - 498);
                 if(rsmax >= 0) {
                     resetSequences.add(append(s3, titleReset));
-                    resetSequences.add(append(s3, titleUsb, csReset));
                     resetSequences.add(append(s3, titleUsb, csCancel));
+                    resetSequences.add(append(s3, titleUsb, csReset));
                     resetSequences.add(append(s3, title, ngReset));
                 }
             }
