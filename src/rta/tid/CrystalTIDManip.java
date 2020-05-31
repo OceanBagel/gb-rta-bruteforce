@@ -275,20 +275,6 @@ public class CrystalTIDManip {
             advFrames[i+1] = 1;
             optStrats.add(new Strat("_wait" + i + "(opt)", i*4 + 95, addr, input, advFrames));
         }
-        
-        ArrayList<IntroSequence> resetSequences = new ArrayList<>(); // ok this doesnt work apparently
-        {   for(IntroSequence rs : resetSequences) {
-                int ngcost = rs.cost() + BASE_COST;
-                int rscost = ngcost + BASE_COST;
-                int rsmax = (MAX_COST - rscost);
-                if(rsmax >= 0) {
-                    resetSequences.add(append(rs, titleUsb, csCancelA));
-                    resetSequences.add(append(rs, titleUsb, csCancelB));
-                }
-            }
-            resetSequences.clear();
-        }
-        Collections.sort(resetSequences);
 
         ArrayList<IntroSequence> introSequences = new ArrayList<>();
         for(Strat s : intro) {
@@ -307,6 +293,18 @@ public class CrystalTIDManip {
                 introSequence = append(introSequence, backout, titleSkip);
             }   
         }
+        ArrayList<IntroSequence> resetSequences = new ArrayList<>();
+        {   for(IntroSequence s3 : resetSequences) {
+                int ngcost = s3.cost() + BASE_COST;
+                int rscost = ngcost + BASE_COST;
+                int rsmax = (MAX_COST - rscost);
+                if(rsmax >= 0) {
+                    resetSequences.add(append(s3, titleUsb, csCancelA));
+                    resetSequences.add(append(s3, titleUsb, csCancelB));
+                }
+            }
+        }
+        Collections.sort(resetSequences);
 
         System.out.println("Number of intro sequences: " + introSequences.size());
         Collections.sort(introSequences);
@@ -325,7 +323,7 @@ public class CrystalTIDManip {
                     seq.toString()
                             + ": TID = " + String.format("0x%4s", Integer.toHexString(tid).toUpperCase()).replace(' ', '0') + " (" + String.format("%5s)", tid).replace(' ', '0')
                             + ", LID = " + String.format("0x%4s", Integer.toHexString(lid).toUpperCase()).replace(' ', '0') + " (" + String.format("%5s)", lid).replace(' ', '0')
-                            + ", Cost: " + String.format("%.02f", (gb.getGbpTime() - 0.47)));
+                            + ", Cost: " + String.format("%.02f", (gb.getGbpTime() - 0.21)));
             gb.loadState(postBios);
             writer.flush();
             System.out.printf("Current Cost: %d%n", seq.cost());
