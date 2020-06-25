@@ -1,6 +1,6 @@
 package rta;
 
-public class CrystalAddr {
+public class CrystalClearAddr {
     public static final int readJoypadAddr = 0x0A7B;
     public static final int introScene1Addr = 0x3956C6;
     public static final int introScene3Addr = 0x39693B;
