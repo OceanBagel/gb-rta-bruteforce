@@ -885,7 +885,7 @@ public class GoldSilverTIDManip {
         Gb gb = new Gb();
         gb.loadBios("roms/gbc_bios.bin");
         gb.loadRom("roms/poke" + gameName + ".gbc", LoadFlags.DEFAULT_LOAD_FLAGS);
-        byte[] postBios = gb.saveState();
+        byte[] Bios = gb.saveState();
         for(IntroSequence seq : introSequences) {
             seq.execute(gb);
             int tid = readTID(gb);
@@ -893,7 +893,7 @@ public class GoldSilverTIDManip {
                     seq.toString()
                             + ": TID = " + String.format("0x%4s", Integer.toHexString(tid).toUpperCase()).replace(' ', '0') + " (" + String.format("%5s)", tid).replace(' ', '0')
                             + ", Cost: " + String.format("%.02f", (gb.getGbpTime() - 0.21))); // TODO: tune cost towards TAS timing?
-            gb.loadState(postBios);
+            gb.loadState(Bios);
             writer.flush();
             System.out.printf("Current Cost: %d%n", seq.cost());
         }
