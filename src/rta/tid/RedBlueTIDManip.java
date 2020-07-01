@@ -17,6 +17,8 @@ public class RedBlueTIDManip {
     private static final int SELECT = 0x04;
     private static final int START = 0x08;
     private static final int UP = 0x40;
+    private static final int DOWN = 0x80;
+    
 
     /* Change this to "blue" or "red" before running */
     private static final String gameName = "red";
@@ -37,7 +39,7 @@ public class RedBlueTIDManip {
 	
 	private static PalStrat nopal =
 		new PalStrat("_nopal", 0,
-		new Integer[] {RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {RedBlueAddr.initAddr},
 		new Integer[] {NO_INPUT},
 		new Integer[] {1});
 		
@@ -65,23 +67,47 @@ public class RedBlueTIDManip {
 		new Integer[] {NO_INPUT, UP},
 		new Integer[] {76, 1});
 	
+	private static PalStrat pal2funky =
+		new PalStrat("_pal2funky", 4,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP, DOWN},
+		new Integer[] {74, 1, 1});
+	
 	private static PalStrat pal3 =
 		new PalStrat("_pal3", 6,
 		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
 		new Integer[] {NO_INPUT, UP},
 		new Integer[] {78, 1});
 	
+	private static PalStrat pal3funky =
+		new PalStrat("_pal3funky", 6,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, NO_INPUT, DOWN, UP},
+		new Integer[] {74, 1, 1, 1});
+	
 	private static PalStrat pal4 =
 		new PalStrat("_pal4", 8,
 		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
 		new Integer[] {NO_INPUT, UP},
 		new Integer[] {80, 1});
+		
+	private static PalStrat pal4funky =
+		new PalStrat("_pal4funky", 8,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, UP, DOWN},
+		new Integer[] {74, 1, 1, 1, 1});
 	
 	private static PalStrat pal5 =
 		new PalStrat("_pal5", 10,
 		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
 		new Integer[] {NO_INPUT, UP},
 		new Integer[] {82, 1});
+	
+	private static PalStrat pal5funky =
+		new PalStrat("_pal5funky", 10,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, UP, DOWN},
+		new Integer[] {74, 1, 1, 1, 1, 1});
 	
 	private static PalStrat holdpal0 =
 		new PalStrat("_pal(hold0)", 0,
@@ -101,11 +127,23 @@ public class RedBlueTIDManip {
 		new Integer[] {NO_INPUT, UP, UP},
 		new Integer[] {76, 0, 0});
 	
+	private static PalStrat holdpal2funky =
+		new PalStrat("_pal(hold2)funky", 4,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, UP, DOWN, DOWN},
+		new Integer[] {74, 1, 0, 0});
+	
 	private static PalStrat holdpal3 =
 		new PalStrat("_pal(hold3)", 6,
 		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
 		new Integer[] {NO_INPUT, UP, UP},
 		new Integer[] {78, 0, 0});
+	
+	private static PalStrat holdpal3funky =
+		new PalStrat("_pal(hold3)funky", 6,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, NO_INPUT, UP, DOWN, DOWN},
+		new Integer[] {74, 1, 1, 0, 0});
 	
 	private static PalStrat holdpal4 =
 		new PalStrat("_pal(hold4)", 8,
@@ -113,11 +151,23 @@ public class RedBlueTIDManip {
 		new Integer[] {NO_INPUT, UP, UP},
 		new Integer[] {80, 0, 0});
 	
+	private static PalStrat holdpal4funky =
+		new PalStrat("_pal(hold4)funky", 8,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, DOWN, UP, UP},
+		new Integer[] {74, 1, 1, 1, 0, 0});
+	
 	private static PalStrat holdpal5 =
 		new PalStrat("_pal(hold5)", 10,
 		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
 		new Integer[] {NO_INPUT, UP, UP},
 		new Integer[] {82, 0, 0});
+	
+	private static PalStrat holdpal5funky =
+		new PalStrat("_pal(hold5)funky", 10,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, DOWN, UP, UP},
+		new Integer[] {74, 1, 1, 1, 1, 0, 0});
 	
 	private static PalStrat cheatpal0 =
 		new PalStrat("_pal(ab0)", 0,
@@ -698,12 +748,22 @@ public class RedBlueTIDManip {
             introSequences.add(append(pal4, seq));
             introSequences.add(append(pal5, seq));
             
+            introSequences.add(append(pal2funky, seq));
+            introSequences.add(append(pal3funky, seq));
+            introSequences.add(append(pal4funky, seq));
+            introSequences.add(append(pal5funky, seq));
+            
             introSequences.add(append(holdpal0, seq));
             introSequences.add(append(holdpal1, seq));
             introSequences.add(append(holdpal2, seq));
             introSequences.add(append(holdpal3, seq));
             introSequences.add(append(holdpal4, seq));
             introSequences.add(append(holdpal5, seq));
+            
+            introSequences.add(append(holdpal2funky, seq));
+            introSequences.add(append(holdpal3funky, seq));
+            introSequences.add(append(holdpal4funky, seq));
+            introSequences.add(append(holdpal5funky, seq));
             
             introSequences.add(append(cheatpal0, seq));
             introSequences.add(append(cheatpal1, seq));
@@ -718,8 +778,9 @@ public class RedBlueTIDManip {
             introSequences.add(append(supercheatpal3, seq));
             introSequences.add(append(supercheatpal4, seq));
             introSequences.add(append(supercheatpal5, seq));
-            
+
         }
+        
         introSequencesTmp.clear();
 
         System.out.println("Number of intro sequences: " + introSequences.size());
