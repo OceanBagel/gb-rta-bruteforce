@@ -515,99 +515,99 @@ public class RedBlueTIDManip {
 
 	private static Strat newGame0 =
 		new Strat("_newgame0", 20 + 20,
-		new Integer[] {RedBlueAddr.joypadAddr},
-		new Integer[] {A},
-		new Integer[] {32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {A, A},
+		new Integer[] {0, 0});
 	
 	private static Strat newGame1 =
 		new Strat("_newgame1", 20 + 20 + 1,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {1, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {1, 0, 0});
 	
 	private static Strat newGame2 =
 		new Strat("_newgame2", 20 + 20 + 2,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {2, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {2, 0, 0});
 	
 	private static Strat newGame3 =
 		new Strat("_newgame3", 20 + 20 + 3,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {3, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {3, 0, 0});
 	
 	private static Strat newGame4 =
 		new Strat("_newgame4", 20 + 20 + 4,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {4, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {4, 0, 0});
 	
 	private static Strat newGame5 =
 		new Strat("_newgame5", 20 + 20 + 5,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {5, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {5, 0, 0});
 	
 	private static Strat newGame6 =
 		new Strat("_newgame6", 20 + 20 + 6,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {6, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {6, 0, 0});
 	
 	private static Strat newGame7 =
 		new Strat("_newgame7", 20 + 20 + 7,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {7, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {7, 0, 0});
 	
 	private static Strat newGame8 =
 		new Strat("_newgame8", 20 + 20 + 8,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {8, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {8, 0, 0});
 	
 	private static Strat newGame9 =
 		new Strat("_newgame9", 20 + 20 + 9,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {9, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {9, 0, 0});
 	
 	private static Strat newGame10 =
 		new Strat("_newgame10", 20 + 20 + 10,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {10, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {10, 0, 0});
 	
 	private static Strat newGame11 =
 		new Strat("_newgame11", 20 + 20 + 11,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {11, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {11, 0, 0});
 	
 	private static Strat newGame12 =
 		new Strat("_newgame12", 20 + 20 + 12,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {12, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {12, 0, 0});
 	
 	private static Strat newGame13 =
 		new Strat("_newgame13", 20 + 20 + 13,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {13, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {13, 0, 0});
 	
 	private static Strat newGame14 =
 		new Strat("_newgame14", 20 + 20 + 14,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {14, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {14, 0, 0});
 	
 	private static Strat newGame15 =
 		new Strat("_newgame15", 20 + 20 + 15,
-		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
-		new Integer[] {NO_INPUT, A},
-		new Integer[] {15, 32});
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {15, 0, 0});
 
     static class Strat {
         String name;
@@ -709,7 +709,7 @@ public class RedBlueTIDManip {
         }
 
 
-        File file = new File(gameName + "_tids.txt");
+        File file = new File(gameName + "_tas_tids.txt");
         PrintWriter writer = new PrintWriter(file);
 
         ArrayList<Strat> title0 = new ArrayList<>();
@@ -1100,7 +1100,7 @@ public class RedBlueTIDManip {
             writer.println(
                     seq.toString()
                             + ": TID = " + String.format("0x%4s", Integer.toHexString(tid).toUpperCase()).replace(' ', '0') + " (" + String.format("%5s)", tid).replace(' ', '0')
-                            + ", Cost: " + gb.getCycleCount() + " Cycles");
+                            + ", Cost: " + (gb.getCycleCount() - 29381434) + " Cycles");
             gb.loadState(Bios);
             writer.flush();
             System.out.printf("Current Cost: %d%n", seq.cost());
