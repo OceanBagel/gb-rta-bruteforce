@@ -5,6 +5,7 @@ public class RedBlueAddr {
     // All ROM addresses used so far are identical for Red & Blue
     public static final int biosReadKeypadAddr = 0x021D;
     public static final int joypadAddr = 0x019A;
+    public static final int postTIDAddr = 0x037860;
     public static final int animateNidorinoAddr = 0x105793;
     public static final int checkInterruptAddr = 0x12F8;
     public static final int joypadOverworldAddr = 0x0F4D;
