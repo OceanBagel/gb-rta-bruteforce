@@ -131,7 +131,7 @@ public class RedBlueTIDManip {
 		new PalStrat("_pal7funky", 14,
 		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
 		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, UP, DOWN},
-		new Integer[] {74, 1, 1, 1, 1, 1, 1});
+		new Integer[] {74, 1, 1, 1, 1, 1, 1, 1});
 	
 	private static PalStrat holdpal0 =
 		new PalStrat("_pal(hold0)", 0,
