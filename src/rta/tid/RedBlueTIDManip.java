@@ -33,7 +33,7 @@ public class RedBlueTIDManip {
 	private static int CRY_BASE_COST = (gameName.equals("blue") ? 96 : 88);
     
     /* Change this to increase/decrease number of intro sequence combinations processed */
-	private static final int MAX_COST = 793 + 15;
+	private static final int MAX_COST = 793 + 25;
 	
 //    private static final int MAX_COST = BASE_COST + HOP_BASE_COST + TITLE_BASE_COST + CRY_BASE_COST + NG_WINDOW_COST + START_NG_COST + TAS_DELAY_COST;
 	
@@ -139,6 +139,66 @@ public class RedBlueTIDManip {
 		new Integer[] {NO_INPUT, UP, DOWN},
 		new Integer[] {84, 1, 1});
 	
+	private static PalStrat pal8 =
+		new PalStrat("_pal8", 16,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP},
+		new Integer[] {88, 1});
+			
+	private static PalStrat pal8funky =
+		new PalStrat("_pal8funky", 16,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP, DOWN},
+		new Integer[] {86, 1, 1});
+	
+	private static PalStrat pal9 =
+		new PalStrat("_pal9", 18,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP},
+		new Integer[] {90, 1});
+			
+	private static PalStrat pal9funky =
+		new PalStrat("_pal9funky", 18,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP, DOWN},
+		new Integer[] {88, 1, 1});
+	
+	private static PalStrat pal10 =
+		new PalStrat("_pal10", 20,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP},
+		new Integer[] {92, 1});
+			
+	private static PalStrat pal10funky =
+		new PalStrat("_pal10funky", 20,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP, DOWN},
+		new Integer[] {90, 1, 1});
+	
+	private static PalStrat pal11 =
+		new PalStrat("_pal11", 22,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP},
+		new Integer[] {94, 1});
+			
+	private static PalStrat pal11funky =
+		new PalStrat("_pal11funky", 22,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP, DOWN},
+		new Integer[] {92, 1, 1});
+	
+	private static PalStrat pal12 =
+		new PalStrat("_pal12", 24,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP},
+		new Integer[] {96, 1});
+			
+	private static PalStrat pal12funky =
+		new PalStrat("_pal12funky", 24,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP, DOWN},
+		new Integer[] {94, 1, 1});
+	
 	private static PalStrat holdpal0 =
 		new PalStrat("_pal(hold0)", 0,
 		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
@@ -229,6 +289,66 @@ public class RedBlueTIDManip {
 		new Integer[] {NO_INPUT, DOWN, UP, UP},
 		new Integer[] {84, 1, 0, 0});
 	
+	private static PalStrat holdpal8 =
+		new PalStrat("_pal(hold8)", 16,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, UP, UP},
+		new Integer[] {88, 0, 0});
+				
+	private static PalStrat holdpal8funky =
+		new PalStrat("_pal(hold8)funky", 16,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, DOWN, UP, UP},
+		new Integer[] {86, 1, 0, 0});
+	
+	private static PalStrat holdpal9 =
+		new PalStrat("_pal(hold9)", 18,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, UP, UP},
+		new Integer[] {90, 0, 0});
+					
+	private static PalStrat holdpal9funky =
+		new PalStrat("_pal(hold9)funky", 18,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, DOWN, UP, UP},
+		new Integer[] {88, 1, 0, 0});
+	
+	private static PalStrat holdpal10 =
+		new PalStrat("_pal(hold10)", 20,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, UP, UP},
+		new Integer[] {92, 0, 0});
+						
+	private static PalStrat holdpal10funky =
+		new PalStrat("_pal(hold10)funky", 20,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, DOWN, UP, UP},
+		new Integer[] {90, 1, 0, 0});
+		
+	private static PalStrat holdpal11 =
+		new PalStrat("_pal(hold11)", 22,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, UP, UP},
+		new Integer[] {94, 0, 0});
+							
+	private static PalStrat holdpal11funky =
+		new PalStrat("_pal(hold11)funky", 22,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, DOWN, UP, UP},
+		new Integer[] {92, 1, 0, 0});
+	
+	private static PalStrat holdpal12 =
+		new PalStrat("_pal(hold12)", 24,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, UP, UP},
+		new Integer[] {96, 0, 0});
+						
+	private static PalStrat holdpal12funky =
+		new PalStrat("_pal(hold12)funky", 24,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, DOWN, UP, UP},
+		new Integer[] {94, 1, 0, 0});
+	
 	private static PalStrat cheatpal0 =
 		new PalStrat("_pal(ab0)", 0,
 		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
@@ -276,6 +396,36 @@ public class RedBlueTIDManip {
 		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
 		new Integer[] {UP, UP | A, UP | A},
 		new Integer[] {86, 0, 0});
+
+	private static PalStrat cheatpal8 =
+		new PalStrat("_pal(ab8)", 16,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {UP, UP | A, UP | A},
+		new Integer[] {88, 0, 0});
+	
+	private static PalStrat cheatpal9 =
+		new PalStrat("_pal(ab9)", 18,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {UP, UP | A, UP | A},
+		new Integer[] {90, 0, 0});
+	
+	private static PalStrat cheatpal10 =
+		new PalStrat("_pal(ab10)", 20,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {UP, UP | A, UP | A},
+		new Integer[] {92, 0, 0});
+	
+	private static PalStrat cheatpal11 =
+		new PalStrat("_pal(ab11)", 22,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {UP, UP | A, UP | A},
+		new Integer[] {94, 0, 0});
+	
+	private static PalStrat cheatpal12 =
+		new PalStrat("_pal(ab12)", 24,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {UP, UP | A, UP | A},
+		new Integer[] {96, 0, 0});
 	
 	private static PalStrat supercheatpal0 =
 		new PalStrat("_pal(rel0)", 0,
@@ -324,6 +474,36 @@ public class RedBlueTIDManip {
 		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
 		new Integer[] {UP, NO_INPUT, UP | A, UP | A},
 		new Integer[] {1, 85, 0, 0});
+	
+	private static PalStrat supercheatpal8 =
+		new PalStrat("_pal(rel8)", 16,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {UP, NO_INPUT, UP | A, UP | A},
+		new Integer[] {1, 87, 0, 0});
+	
+	private static PalStrat supercheatpal9 =
+		new PalStrat("_pal(rel9)", 18,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {UP, NO_INPUT, UP | A, UP | A},
+		new Integer[] {1, 89, 0, 0});
+	
+	private static PalStrat supercheatpal10 =
+		new PalStrat("_pal(rel10)", 20,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {UP, NO_INPUT, UP | A, UP | A},
+		new Integer[] {1, 91, 0, 0});
+	
+	private static PalStrat supercheatpal11 =
+		new PalStrat("_pal(rel11)", 22,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {UP, NO_INPUT, UP | A, UP | A},
+		new Integer[] {1, 93, 0, 0});
+	
+	private static PalStrat supercheatpal12 =
+		new PalStrat("_pal(rel12)", 24,
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {UP, NO_INPUT, UP | A, UP | A},
+		new Integer[] {1, 95, 0, 0});
 
 	private static Strat gfSkip0 =
 		new Strat("_gfskip0", 0,
@@ -420,10 +600,71 @@ public class RedBlueTIDManip {
 		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
 		new Integer[] {NO_INPUT, UP | SELECT | B},
 		new Integer[] {15, 1});
+	
+	private static Strat gfSkip16 =
+		new Strat("_gfskip16", 16,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {16, 1});
+	
+	private static Strat gfSkip17 =
+		new Strat("_gfskip17", 17,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {17, 1});
+	
+	private static Strat gfSkip18 =
+		new Strat("_gfskip18", 18,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {18, 1});
+	
+	private static Strat gfSkip19 =
+		new Strat("_gfskip19", 19,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {19, 1});
+	
+	private static Strat gfSkip20 =
+		new Strat("_gfskip20", 20,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {20, 1});
+	
+	private static Strat gfSkip21 =
+		new Strat("_gfskip21", 21,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {21, 1});
+	
+	private static Strat gfSkip22 =
+		new Strat("_gfskip22", 22,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {22, 1});
+	
+	private static Strat gfSkip23 =
+		new Strat("_gfskip23", 23,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {23, 1});
+	
+	private static Strat gfSkip24 =
+		new Strat("_gfskip24", 24,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {24, 1});
+	
+	private static Strat gfSkip25 =
+		new Strat("_gfskip25", 25,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {25, 1});
 
-	private static List<Strat> gf = Arrays.asList
-		(gfSkip0, gfSkip1, gfSkip2, gfSkip3, gfSkip4, gfSkip5, gfSkip6, gfSkip7, gfSkip8, gfSkip9,
-		gfSkip10, gfSkip11, gfSkip12, gfSkip13, gfSkip14, gfSkip15);
+	private static List<Strat> gf = Arrays.asList(
+		gfSkip0, gfSkip1, gfSkip2, gfSkip3, gfSkip4, gfSkip5, gfSkip6, gfSkip7, gfSkip8, gfSkip9, gfSkip10,
+		gfSkip11, gfSkip12, gfSkip13, gfSkip14, gfSkip15, gfSkip16, gfSkip17, gfSkip18, gfSkip19, gfSkip20,
+		gfSkip21, gfSkip22, gfSkip23, gfSkip24, gfSkip25);
 
 	private static Strat nido0 =
 		new Strat("_hop0", 172 + TITLE_BASE_COST,
@@ -521,9 +762,70 @@ public class RedBlueTIDManip {
 		new Integer[] {NO_INPUT, UP | SELECT | B},
 		new Integer[] {15, 1});
 	
-	private static List<Strat> nido = Arrays.asList
-		(nido0, nido1, nido2, nido3, nido4, nido5, nido6, nido7, nido8, nido9,
-		nido10, nido11, nido12, nido13, nido14, nido15);
+	private static Strat nido16 =
+		new Strat("_hop16", 172 + TITLE_BASE_COST + 16,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {16, 1});
+	
+	private static Strat nido17 =
+		new Strat("_hop17", 172 + TITLE_BASE_COST + 17,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {17, 1});
+	
+	private static Strat nido18 =
+		new Strat("_hop18", 172 + TITLE_BASE_COST + 18,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {18, 1});
+	
+	private static Strat nido19 =
+		new Strat("_hop19", 172 + TITLE_BASE_COST + 19,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {19, 1});
+	
+	private static Strat nido20 =
+		new Strat("_hop20", 172 + TITLE_BASE_COST + 20,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {20, 1});
+	
+	private static Strat nido21 =
+		new Strat("_hop21", 172 + TITLE_BASE_COST + 21,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {21, 1});
+	
+	private static Strat nido22 =
+		new Strat("_hop22", 172 + TITLE_BASE_COST + 22,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {22, 1});
+	
+	private static Strat nido23 =
+		new Strat("_hop23", 172 + TITLE_BASE_COST + 23,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {23, 1});
+	
+	private static Strat nido24 =
+		new Strat("_hop24", 172 + TITLE_BASE_COST + 24,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {24, 1});
+	
+	private static Strat nido25 =
+		new Strat("_hop25", 172 + TITLE_BASE_COST + 25,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr},
+		new Integer[] {NO_INPUT, UP | SELECT | B},
+		new Integer[] {25, 1});
+	
+	private static List<Strat> nido = Arrays.asList(
+		nido0, nido1, nido2, nido3, nido4, nido5, nido6, nido7, nido8, nido9, nido10,
+		nido11, nido12, nido13, nido14, nido15, nido16, nido17, nido18, nido19, nido20,
+		nido21, nido22, nido23, nido24, nido25);
 
 	private static Strat newGame0 =
 		new Strat("_newgame0", 20 + 20,
@@ -620,6 +922,66 @@ public class RedBlueTIDManip {
 		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
 		new Integer[] {NO_INPUT, A, A},
 		new Integer[] {15, 0, 0});
+	
+	private static Strat newGame16 =
+		new Strat("_newgame16", 20 + 20 + 16,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {16, 0, 0});
+	
+	private static Strat newGame17 =
+		new Strat("_newgame17", 20 + 20 + 17,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {17, 0, 0});
+	
+	private static Strat newGame18 =
+		new Strat("_newgame18", 20 + 20 + 18,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {18, 0, 0});
+	
+	private static Strat newGame19 =
+		new Strat("_newgame19", 20 + 20 + 19,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {19, 0, 0});
+	
+	private static Strat newGame20 =
+		new Strat("_newgame20", 20 + 20 + 20,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {20, 0, 0});
+	
+	private static Strat newGame21 =
+		new Strat("_newgame21", 20 + 20 + 21,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {21, 0, 0});
+	
+	private static Strat newGame22 =
+		new Strat("_newgame22", 20 + 20 + 22,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {22, 0, 0});
+	
+	private static Strat newGame23 =
+		new Strat("_newgame23", 20 + 20 + 23,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {23, 0, 0});
+	
+	private static Strat newGame24 =
+		new Strat("_newgame24", 20 + 20 + 24,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {24, 0, 0});
+	
+	private static Strat newGame25 =
+		new Strat("_newgame25", 20 + 20 + 25,
+		new Integer[] {RedBlueAddr.joypadAddr, RedBlueAddr.joypadAddr, RedBlueAddr.postTIDAddr},
+		new Integer[] {NO_INPUT, A, A},
+		new Integer[] {25, 0, 0});
 
     static class Strat {
         String name;
@@ -740,6 +1102,16 @@ public class RedBlueTIDManip {
         ArrayList<Strat> title13 = new ArrayList<>();
         ArrayList<Strat> title14 = new ArrayList<>();
         ArrayList<Strat> title15 = new ArrayList<>();
+        ArrayList<Strat> title16 = new ArrayList<>();
+        ArrayList<Strat> title17 = new ArrayList<>();
+        ArrayList<Strat> title18 = new ArrayList<>();
+        ArrayList<Strat> title19 = new ArrayList<>();
+        ArrayList<Strat> title20 = new ArrayList<>();
+        ArrayList<Strat> title21 = new ArrayList<>();
+        ArrayList<Strat> title22 = new ArrayList<>();
+        ArrayList<Strat> title23 = new ArrayList<>();
+        ArrayList<Strat> title24 = new ArrayList<>();
+        ArrayList<Strat> title25 = new ArrayList<>();
         
         int maxTitle = (MAX_COST - (492 + 172 + CRY_BASE_COST + TITLE_BASE_COST + 20 + 20));
         
@@ -932,6 +1304,126 @@ public class RedBlueTIDManip {
             title15.add(new Strat("_title15", CRY_BASE_COST + 270*i + 15, addr, input, advFrames));
         }
         
+        for(int i=0; maxTitle>=0 && i<=maxTitle/270; i++) {
+            Integer[] addr = new Integer[i+2], input = new Integer[i+2], advFrames = new Integer[i+2];
+            
+            addr[i] = RedBlueAddr.joypadAddr;
+            input[i] = NO_INPUT;
+            advFrames[i] = 16;
+            addr[i+1] = RedBlueAddr.joypadAddr;
+            input[i+1] = START;
+            advFrames[i+1] = 1;
+            title16.add(new Strat("_title16", CRY_BASE_COST + 270*i + 16, addr, input, advFrames));
+        }
+        
+        for(int i=0; maxTitle>=0 && i<=maxTitle/270; i++) {
+            Integer[] addr = new Integer[i+2], input = new Integer[i+2], advFrames = new Integer[i+2];
+            
+            addr[i] = RedBlueAddr.joypadAddr;
+            input[i] = NO_INPUT;
+            advFrames[i] = 17;
+            addr[i+1] = RedBlueAddr.joypadAddr;
+            input[i+1] = START;
+            advFrames[i+1] = 1;
+            title17.add(new Strat("_title17", CRY_BASE_COST + 270*i + 17, addr, input, advFrames));
+        }
+        
+        for(int i=0; maxTitle>=0 && i<=maxTitle/270; i++) {
+            Integer[] addr = new Integer[i+2], input = new Integer[i+2], advFrames = new Integer[i+2];
+            
+            addr[i] = RedBlueAddr.joypadAddr;
+            input[i] = NO_INPUT;
+            advFrames[i] = 18;
+            addr[i+1] = RedBlueAddr.joypadAddr;
+            input[i+1] = START;
+            advFrames[i+1] = 1;
+            title18.add(new Strat("_title18", CRY_BASE_COST + 270*i + 18, addr, input, advFrames));
+        }
+        
+        for(int i=0; maxTitle>=0 && i<=maxTitle/270; i++) {
+            Integer[] addr = new Integer[i+2], input = new Integer[i+2], advFrames = new Integer[i+2];
+            
+            addr[i] = RedBlueAddr.joypadAddr;
+            input[i] = NO_INPUT;
+            advFrames[i] = 19;
+            addr[i+1] = RedBlueAddr.joypadAddr;
+            input[i+1] = START;
+            advFrames[i+1] = 1;
+            title19.add(new Strat("_title19", CRY_BASE_COST + 270*i + 19, addr, input, advFrames));
+        }
+        
+        for(int i=0; maxTitle>=0 && i<=maxTitle/270; i++) {
+            Integer[] addr = new Integer[i+2], input = new Integer[i+2], advFrames = new Integer[i+2];
+            
+            addr[i] = RedBlueAddr.joypadAddr;
+            input[i] = NO_INPUT;
+            advFrames[i] = 20;
+            addr[i+1] = RedBlueAddr.joypadAddr;
+            input[i+1] = START;
+            advFrames[i+1] = 1;
+            title20.add(new Strat("_title20", CRY_BASE_COST + 270*i + 20, addr, input, advFrames));
+        }
+        
+        for(int i=0; maxTitle>=0 && i<=maxTitle/270; i++) {
+            Integer[] addr = new Integer[i+2], input = new Integer[i+2], advFrames = new Integer[i+2];
+            
+            addr[i] = RedBlueAddr.joypadAddr;
+            input[i] = NO_INPUT;
+            advFrames[i] = 21;
+            addr[i+1] = RedBlueAddr.joypadAddr;
+            input[i+1] = START;
+            advFrames[i+1] = 1;
+            title21.add(new Strat("_title21", CRY_BASE_COST + 270*i + 21, addr, input, advFrames));
+        }
+        
+        for(int i=0; maxTitle>=0 && i<=maxTitle/270; i++) {
+            Integer[] addr = new Integer[i+2], input = new Integer[i+2], advFrames = new Integer[i+2];
+            
+            addr[i] = RedBlueAddr.joypadAddr;
+            input[i] = NO_INPUT;
+            advFrames[i] = 22;
+            addr[i+1] = RedBlueAddr.joypadAddr;
+            input[i+1] = START;
+            advFrames[i+1] = 1;
+            title22.add(new Strat("_title22", CRY_BASE_COST + 270*i + 22, addr, input, advFrames));
+        }
+        
+        for(int i=0; maxTitle>=0 && i<=maxTitle/270; i++) {
+            Integer[] addr = new Integer[i+2], input = new Integer[i+2], advFrames = new Integer[i+2];
+            
+            addr[i] = RedBlueAddr.joypadAddr;
+            input[i] = NO_INPUT;
+            advFrames[i] = 23;
+            addr[i+1] = RedBlueAddr.joypadAddr;
+            input[i+1] = START;
+            advFrames[i+1] = 1;
+            title23.add(new Strat("_title23", CRY_BASE_COST + 270*i + 23, addr, input, advFrames));
+        }
+        
+        for(int i=0; maxTitle>=0 && i<=maxTitle/270; i++) {
+            Integer[] addr = new Integer[i+2], input = new Integer[i+2], advFrames = new Integer[i+2];
+            
+            addr[i] = RedBlueAddr.joypadAddr;
+            input[i] = NO_INPUT;
+            advFrames[i] = 24;
+            addr[i+1] = RedBlueAddr.joypadAddr;
+            input[i+1] = START;
+            advFrames[i+1] = 1;
+            title24.add(new Strat("_title24", CRY_BASE_COST + 270*i + 24, addr, input, advFrames));
+        }
+        
+        for(int i=0; maxTitle>=0 && i<=maxTitle/270; i++) {
+            Integer[] addr = new Integer[i+2], input = new Integer[i+2], advFrames = new Integer[i+2];
+            
+            addr[i] = RedBlueAddr.joypadAddr;
+            input[i] = NO_INPUT;
+            advFrames[i] = 25;
+            addr[i+1] = RedBlueAddr.joypadAddr;
+            input[i+1] = START;
+            advFrames[i+1] = 1;
+            title25.add(new Strat("_title25", CRY_BASE_COST + 270*i + 25, addr, input, advFrames));
+        }
+        
         ArrayList<IntroSequence> newGameSequences = new ArrayList<>();
         
         ArrayList<IntroSequence> s3seqs = new ArrayList<>();
@@ -940,26 +1432,188 @@ public class RedBlueTIDManip {
         while(!s3seqs.isEmpty()) {
             ArrayList<IntroSequence> s4seqs = new ArrayList<>();
             for(IntroSequence s3 : s3seqs) {
-                int ngcost = s3.cost() + CRY_BASE_COST + 20 + 20;
-                int ngmax = (MAX_COST - ngcost - 492);
-                for(int i=0; ngmax>=0 && i<=ngmax/270; i++) {
+            	
+                int ngcost0 = s3.cost() + CRY_BASE_COST + 20 + 20 + 0;
+                int ngmax0 = (MAX_COST - ngcost0 - 492);
+                
+                int ngcost1 = s3.cost() + CRY_BASE_COST + 20 + 20 + 1;
+                int ngmax1 = (MAX_COST - ngcost1 - 492);
+                
+                int ngcost2 = s3.cost() + CRY_BASE_COST + 20 + 20 + 2;
+                int ngmax2 = (MAX_COST - ngcost2 - 492);
+                
+                int ngcost3 = s3.cost() + CRY_BASE_COST + 20 + 20 + 3;
+                int ngmax3 = (MAX_COST - ngcost3 - 492);
+                
+                int ngcost4 = s3.cost() + CRY_BASE_COST + 20 + 20 + 4;
+                int ngmax4 = (MAX_COST - ngcost4 - 492);
+                
+                int ngcost5 = s3.cost() + CRY_BASE_COST + 20 + 20 + 5;
+                int ngmax5 = (MAX_COST - ngcost5 - 492);
+                
+                int ngcost6 = s3.cost() + CRY_BASE_COST + 20 + 20 + 6;
+                int ngmax6 = (MAX_COST - ngcost6 - 492);
+                
+                int ngcost7 = s3.cost() + CRY_BASE_COST + 20 + 20 + 7;
+                int ngmax7 = (MAX_COST - ngcost7 - 492);
+                
+                int ngcost8 = s3.cost() + CRY_BASE_COST + 20 + 20 + 8;
+                int ngmax8 = (MAX_COST - ngcost8 - 492);
+                
+                int ngcost9 = s3.cost() + CRY_BASE_COST + 20 + 20 + 9;
+                int ngmax9 = (MAX_COST - ngcost9 - 492);
+                
+                int ngcost10 = s3.cost() + CRY_BASE_COST + 20 + 20 + 10;
+                int ngmax10 = (MAX_COST - ngcost10 - 492);
+                
+                int ngcost11 = s3.cost() + CRY_BASE_COST + 20 + 20 + 11;
+                int ngmax11 = (MAX_COST - ngcost11 - 492);
+                
+                int ngcost12 = s3.cost() + CRY_BASE_COST + 20 + 20 + 12;
+                int ngmax12 = (MAX_COST - ngcost12 - 492);
+                
+                int ngcost13 = s3.cost() + CRY_BASE_COST + 20 + 20 + 13;
+                int ngmax13 = (MAX_COST - ngcost13 - 492);
+                
+                int ngcost14 = s3.cost() + CRY_BASE_COST + 20 + 20 + 14;
+                int ngmax14 = (MAX_COST - ngcost14 - 492);
+                
+                int ngcost15 = s3.cost() + CRY_BASE_COST + 20 + 20 + 15;
+                int ngmax15 = (MAX_COST - ngcost15 - 492);
+                
+                int ngcost16 = s3.cost() + CRY_BASE_COST + 20 + 20 + 16;
+                int ngmax16 = (MAX_COST - ngcost16 - 492);
+                
+                int ngcost17 = s3.cost() + CRY_BASE_COST + 20 + 20 + 17;
+                int ngmax17 = (MAX_COST - ngcost17 - 492);
+                
+                int ngcost18 = s3.cost() + CRY_BASE_COST + 20 + 20 + 18;
+                int ngmax18 = (MAX_COST - ngcost18 - 492);
+                
+                int ngcost19 = s3.cost() + CRY_BASE_COST + 20 + 20 + 19;
+                int ngmax19 = (MAX_COST - ngcost19 - 492);
+                
+                int ngcost20 = s3.cost() + CRY_BASE_COST + 20 + 20 + 20;
+                int ngmax20 = (MAX_COST - ngcost20 - 492);
+                
+                int ngcost21 = s3.cost() + CRY_BASE_COST + 20 + 20 + 21;
+                int ngmax21 = (MAX_COST - ngcost21 - 492);
+                
+                int ngcost22 = s3.cost() + CRY_BASE_COST + 20 + 20 + 22;
+                int ngmax22 = (MAX_COST - ngcost22 - 492);
+                
+                int ngcost23 = s3.cost() + CRY_BASE_COST + 20 + 20 + 23;
+                int ngmax23 = (MAX_COST - ngcost23 - 492);
+                
+                int ngcost24 = s3.cost() + CRY_BASE_COST + 20 + 20 + 24;
+                int ngmax24 = (MAX_COST - ngcost24 - 492);
+                
+                int ngcost25 = s3.cost() + CRY_BASE_COST + 20 + 20 + 25;
+                int ngmax25 = (MAX_COST - ngcost25 - 492);
+
+                for(int i=0; ngmax0>=0 && i<=ngmax0/270; i++) {
                     s4seqs.add(append(s3, title0.get(i)));
+                } 
+
+                for(int i=0; ngmax1>=0 && i<=ngmax1/270; i++) {
                     s4seqs.add(append(s3, title1.get(i)));
+                }  
+
+                for(int i=0; ngmax2>=0 && i<=ngmax2/270; i++) {
                     s4seqs.add(append(s3, title2.get(i)));
+                } 
+
+                for(int i=0; ngmax3>=0 && i<=ngmax3/270; i++) {
                     s4seqs.add(append(s3, title3.get(i)));
+                } 
+
+                for(int i=0; ngmax4>=0 && i<=ngmax4/270; i++) {
                     s4seqs.add(append(s3, title4.get(i)));
+                } 
+
+                for(int i=0; ngmax5>=0 && i<=ngmax5/270; i++) {
                     s4seqs.add(append(s3, title5.get(i)));
+                } 
+
+                for(int i=0; ngmax6>=0 && i<=ngmax6/270; i++) {
                     s4seqs.add(append(s3, title6.get(i)));
+                } 
+
+                for(int i=0; ngmax7>=0 && i<=ngmax7/270; i++) {
                     s4seqs.add(append(s3, title7.get(i)));
+                } 
+
+                for(int i=0; ngmax8>=0 && i<=ngmax8/270; i++) {
                     s4seqs.add(append(s3, title8.get(i)));
+                } 
+
+                for(int i=0; ngmax9>=0 && i<=ngmax9/270; i++) {
                     s4seqs.add(append(s3, title9.get(i)));
+                } 
+
+                for(int i=0; ngmax10>=0 && i<=ngmax10/270; i++) {
                     s4seqs.add(append(s3, title10.get(i)));
+                } 
+
+                for(int i=0; ngmax11>=0 && i<=ngmax11/270; i++) {
                     s4seqs.add(append(s3, title11.get(i)));
+                } 
+
+                for(int i=0; ngmax12>=0 && i<=ngmax12/270; i++) {
                     s4seqs.add(append(s3, title12.get(i)));
+                } 
+
+                for(int i=0; ngmax13>=0 && i<=ngmax13/270; i++) {
                     s4seqs.add(append(s3, title13.get(i)));
+                } 
+
+                for(int i=0; ngmax14>=0 && i<=ngmax14/270; i++) {
                     s4seqs.add(append(s3, title14.get(i)));
+                } 
+
+                for(int i=0; ngmax15>=0 && i<=ngmax15/270; i++) {
                     s4seqs.add(append(s3, title15.get(i)));
+                } 
+
+                for(int i=0; ngmax16>=0 && i<=ngmax16/270; i++) {
+                    s4seqs.add(append(s3, title16.get(i)));
+                } 
+
+                for(int i=0; ngmax17>=0 && i<=ngmax17/270; i++) {
+                    s4seqs.add(append(s3, title17.get(i)));
+                } 
+
+                for(int i=0; ngmax18>=0 && i<=ngmax18/270; i++) {
+                    s4seqs.add(append(s3, title18.get(i)));
+                } 
+
+                for(int i=0; ngmax19>=0 && i<=ngmax19/270; i++) {
+                    s4seqs.add(append(s3, title19.get(i)));
+                } 
+
+                for(int i=0; ngmax20>=0 && i<=ngmax20/270; i++) {
+                    s4seqs.add(append(s3, title20.get(i)));
+                } 
+
+                for(int i=0; ngmax21>=0 && i<=ngmax21/270; i++) {
+                    s4seqs.add(append(s3, title21.get(i)));
+                } 
+
+                for(int i=0; ngmax22>=0 && i<=ngmax22/270; i++) {
+                    s4seqs.add(append(s3, title22.get(i)));
                 }
+
+                for(int i=0; ngmax23>=0 && i<=ngmax23/270; i++) {
+                    s4seqs.add(append(s3, title23.get(i)));
+                } 
+
+                for(int i=0; ngmax24>=0 && i<=ngmax24/270; i++) {
+                    s4seqs.add(append(s3, title24.get(i)));
+                } 
+                
+                for(int i=0; ngmax25>=0 && i<=ngmax25/270; i++) {
+                    s4seqs.add(append(s3, title25.get(i)));
+                } 
             }
             
             s3seqs.clear();
@@ -1030,6 +1684,46 @@ public class RedBlueTIDManip {
                 IntroSequence seq = append(s4, newGame15);
                 newGameSequences.add(seq);
             }
+            for (IntroSequence s4 : s4seqs) {
+                IntroSequence seq = append(s4, newGame16);
+                newGameSequences.add(seq);
+            }
+            for (IntroSequence s4 : s4seqs) {
+                IntroSequence seq = append(s4, newGame17);
+                newGameSequences.add(seq);
+            }
+            for (IntroSequence s4 : s4seqs) {
+                IntroSequence seq = append(s4, newGame18);
+                newGameSequences.add(seq);
+            }
+            for (IntroSequence s4 : s4seqs) {
+                IntroSequence seq = append(s4, newGame19);
+                newGameSequences.add(seq);
+            }
+            for (IntroSequence s4 : s4seqs) {
+                IntroSequence seq = append(s4, newGame20);
+                newGameSequences.add(seq);
+            }
+            for (IntroSequence s4 : s4seqs) {
+                IntroSequence seq = append(s4, newGame21);
+                newGameSequences.add(seq);
+            }
+            for (IntroSequence s4 : s4seqs) {
+                IntroSequence seq = append(s4, newGame22);
+                newGameSequences.add(seq);
+            }
+            for (IntroSequence s4 : s4seqs) {
+                IntroSequence seq = append(s4, newGame23);
+                newGameSequences.add(seq);
+            }
+            for (IntroSequence s4 : s4seqs) {
+                IntroSequence seq = append(s4, newGame24);
+                newGameSequences.add(seq);
+            }
+            for (IntroSequence s4 : s4seqs) {
+                IntroSequence seq = append(s4, newGame25);
+                newGameSequences.add(seq);
+            }
             s4seqs = new ArrayList<>(s4tmp);
         }
     }
@@ -1051,6 +1745,11 @@ public class RedBlueTIDManip {
             introSequences.add(append(pal5, seq));
             introSequences.add(append(pal6, seq));
             introSequences.add(append(pal7, seq));
+            introSequences.add(append(pal8, seq));
+            introSequences.add(append(pal9, seq));
+            introSequences.add(append(pal10, seq));
+            introSequences.add(append(pal11, seq));
+            introSequences.add(append(pal12, seq));
             
             introSequences.add(append(pal1funky, seq));
             introSequences.add(append(pal2funky, seq));
@@ -1059,6 +1758,11 @@ public class RedBlueTIDManip {
             introSequences.add(append(pal5funky, seq));
             introSequences.add(append(pal6funky, seq));
             introSequences.add(append(pal7funky, seq));
+            introSequences.add(append(pal8funky, seq));
+            introSequences.add(append(pal9funky, seq));
+            introSequences.add(append(pal10funky, seq));
+            introSequences.add(append(pal11funky, seq));
+            introSequences.add(append(pal12funky, seq));
             
             introSequences.add(append(holdpal0, seq));
             introSequences.add(append(holdpal1, seq));
@@ -1068,6 +1772,11 @@ public class RedBlueTIDManip {
             introSequences.add(append(holdpal5, seq));
             introSequences.add(append(holdpal6, seq));
             introSequences.add(append(holdpal7, seq));
+            introSequences.add(append(holdpal8, seq));
+            introSequences.add(append(holdpal9, seq));
+            introSequences.add(append(holdpal10, seq));
+            introSequences.add(append(holdpal11, seq));
+            introSequences.add(append(holdpal12, seq));
             
             introSequences.add(append(holdpal1funky, seq));
             introSequences.add(append(holdpal2funky, seq));
@@ -1076,6 +1785,11 @@ public class RedBlueTIDManip {
             introSequences.add(append(holdpal5funky, seq));
             introSequences.add(append(holdpal6funky, seq));
             introSequences.add(append(holdpal7funky, seq));
+            introSequences.add(append(holdpal8funky, seq));
+            introSequences.add(append(holdpal9funky, seq));
+            introSequences.add(append(holdpal10funky, seq));
+            introSequences.add(append(holdpal11funky, seq));
+            introSequences.add(append(holdpal12funky, seq));
             
             introSequences.add(append(cheatpal0, seq));
             introSequences.add(append(cheatpal1, seq));
@@ -1085,6 +1799,11 @@ public class RedBlueTIDManip {
             introSequences.add(append(cheatpal5, seq));
             introSequences.add(append(cheatpal6, seq));
             introSequences.add(append(cheatpal7, seq));
+            introSequences.add(append(cheatpal8, seq));
+            introSequences.add(append(cheatpal9, seq));
+            introSequences.add(append(cheatpal10, seq));
+            introSequences.add(append(cheatpal11, seq));
+            introSequences.add(append(cheatpal12, seq));
             
             introSequences.add(append(supercheatpal0, seq));
             introSequences.add(append(supercheatpal1, seq));
@@ -1094,6 +1813,11 @@ public class RedBlueTIDManip {
             introSequences.add(append(supercheatpal5, seq));
             introSequences.add(append(supercheatpal6, seq));
             introSequences.add(append(supercheatpal7, seq));
+            introSequences.add(append(supercheatpal8, seq));
+            introSequences.add(append(supercheatpal9, seq));
+            introSequences.add(append(supercheatpal10, seq));
+            introSequences.add(append(supercheatpal11, seq));
+            introSequences.add(append(supercheatpal12, seq));
 
         }
         
