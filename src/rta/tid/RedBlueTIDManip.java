@@ -87,9 +87,9 @@ public class RedBlueTIDManip {
 	
 	private static PalStrat pal3funky =
 		new PalStrat("_pal3funky", 6,
-		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
-		new Integer[] {NO_INPUT, NO_INPUT, DOWN, UP},
-		new Integer[] {74, 1, 1, 1});
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, DOWN, UP},
+		new Integer[] {76, 1, 1});
 	
 	private static PalStrat pal4 =
 		new PalStrat("_pal4", 8,
@@ -99,9 +99,9 @@ public class RedBlueTIDManip {
 		
 	private static PalStrat pal4funky =
 		new PalStrat("_pal4funky", 8,
-		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
-		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, UP, DOWN},
-		new Integer[] {74, 1, 1, 1, 1});
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP, DOWN},
+		new Integer[] {78, 1, 1});
 	
 	private static PalStrat pal5 =
 		new PalStrat("_pal5", 10,
@@ -111,9 +111,9 @@ public class RedBlueTIDManip {
 	
 	private static PalStrat pal5funky =
 		new PalStrat("_pal5funky", 10,
-		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
-		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, UP, DOWN},
-		new Integer[] {74, 1, 1, 1, 1, 1});
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP, DOWN},
+		new Integer[] {80, 1, 1});
 	
 	private static PalStrat pal6 =
 		new PalStrat("_pal6", 12,
@@ -123,9 +123,9 @@ public class RedBlueTIDManip {
 		
 	private static PalStrat pal6funky =
 		new PalStrat("_pal6funky", 12,
-		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
-		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, UP, DOWN},
-		new Integer[] {74, 1, 1, 1, 1, 1, 1});
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP, DOWN},
+		new Integer[] {82, 1, 1});
 	
 	private static PalStrat pal7 =
 		new PalStrat("_pal7", 14,
@@ -135,9 +135,9 @@ public class RedBlueTIDManip {
 			
 	private static PalStrat pal7funky =
 		new PalStrat("_pal7funky", 14,
-		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
-		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, UP, DOWN},
-		new Integer[] {74, 1, 1, 1, 1, 1, 1, 1});
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr},
+		new Integer[] {NO_INPUT, UP, DOWN},
+		new Integer[] {84, 1, 1});
 	
 	private static PalStrat holdpal0 =
 		new PalStrat("_pal(hold0)", 0,
@@ -177,9 +177,9 @@ public class RedBlueTIDManip {
 	
 	private static PalStrat holdpal3funky =
 		new PalStrat("_pal(hold3)funky", 6,
-		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
-		new Integer[] {NO_INPUT, NO_INPUT, UP, DOWN, DOWN},
-		new Integer[] {74, 1, 1, 0, 0});
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, UP, DOWN, DOWN},
+		new Integer[] {76, 1, 0, 0});
 	
 	private static PalStrat holdpal4 =
 		new PalStrat("_pal(hold4)", 8,
@@ -189,9 +189,9 @@ public class RedBlueTIDManip {
 	
 	private static PalStrat holdpal4funky =
 		new PalStrat("_pal(hold4)funky", 8,
-		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
-		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, DOWN, UP, UP},
-		new Integer[] {74, 1, 1, 1, 0, 0});
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, DOWN, UP, UP},
+		new Integer[] {78, 1, 0, 0});
 	
 	private static PalStrat holdpal5 =
 		new PalStrat("_pal(hold5)", 10,
@@ -201,9 +201,9 @@ public class RedBlueTIDManip {
 	
 	private static PalStrat holdpal5funky =
 		new PalStrat("_pal(hold5)funky", 10,
-		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
-		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, DOWN, UP, UP},
-		new Integer[] {74, 1, 1, 1, 1, 0, 0});
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, DOWN, UP, UP},
+		new Integer[] {80, 1, 0, 0});
 	
 	private static PalStrat holdpal6 =
 		new PalStrat("_pal(hold6)", 12,
@@ -213,9 +213,9 @@ public class RedBlueTIDManip {
 		
 	private static PalStrat holdpal6funky =
 		new PalStrat("_pal(hold6)funky", 12,
-		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
-		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, DOWN, UP, UP},
-		new Integer[] {74, 1, 1, 1, 1, 1, 0, 0});
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, DOWN, UP, UP},
+		new Integer[] {82, 1, 0, 0});
 		
 	private static PalStrat holdpal7 =
 		new PalStrat("_pal(hold7)", 14,
@@ -225,9 +225,9 @@ public class RedBlueTIDManip {
 			
 	private static PalStrat holdpal7funky =
 		new PalStrat("_pal(hold7)funky", 14,
-		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
-		new Integer[] {NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, NO_INPUT, DOWN, UP, UP},
-		new Integer[] {74, 1, 1, 1, 1, 1, 1, 0, 0});
+		new Integer[] {RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.biosReadKeypadAddr, RedBlueAddr.initAddr},
+		new Integer[] {NO_INPUT, DOWN, UP, UP},
+		new Integer[] {84, 1, 0, 0});
 	
 	private static PalStrat cheatpal0 =
 		new PalStrat("_pal(ab0)", 0,
