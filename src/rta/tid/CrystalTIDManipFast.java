@@ -35,7 +35,7 @@ public class CrystalTIDManipFast {
     private static int frameStrats = 0;
 
     // Output filename, will be overwritten without prompting
-    private static String FILE_NAME = "crystal_tids_nobasecost.txt";
+    private static String FILE_NAME = "crystal_tids.txt";
 
 
 
