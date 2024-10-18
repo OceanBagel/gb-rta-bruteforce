@@ -42,6 +42,8 @@ public class Gb {
 	private Memory addressBuffer;
 	private Memory saveStateBuffer;
 	private IJoypadCallback inputCallback;
+	
+	public boolean showDisplay = false;
 
 	public Gb() {
 		lib = Libgambatte.INSTANCE;
@@ -123,6 +125,11 @@ public class Gb {
 	}
 
 	public int advanceFrame(int joypad) {
+        if(showDisplay) {
+			try {
+	        	Thread.sleep(17);
+	        }catch(InterruptedException e) {};
+        }
 		currentJoypad = joypad;
 		samples.setInt(0, NUM_SAMPLES_PER_FRAME - frameOverflow);
 		int ret = lib.gambatte_runfor(gbHandle, videoBuffer, VIDEO_BUFFER_WIDTH, audioBuffer, samples);
@@ -152,6 +159,7 @@ public class Gb {
 		int hitAddress;
 		do {
 			hitAddress = advanceFrame(joypad);
+			
 		} while(Arrays.binarySearch(addresses, hitAddress) < 0);
 		currentJoypad = 0;
 		lib.gambatte_setinterruptaddresses(gbHandle, addressBuffer, 0);
